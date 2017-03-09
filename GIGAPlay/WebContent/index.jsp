@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>GiGA Play</title>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/bootstrap.css">
@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/sima-style.css">
 <link rel="stylesheet" href="css/fullmotion-main2.css">
+<link rel="stylesheet" href="css/sign.css">
 
 <style type="text/css">
 	@font-face {
@@ -79,17 +80,25 @@
 								    	</div>
 								    	<div class="content">
 								         	<h1 style="text-align:center">GIGA PLAY 회원가입</h1>
-								         	<form action="play/signup" method="post">
-									         	<br><p><font face="olleh" size="4" color="black">사번 *</font>
-									         	<input id="signup-mid" type="text" name="mid" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
-									         	</p><p><font face="olleh" size="4" color="black">비밀번호 *</font>
-									         	<input id="signup-pw" type="password" name="pw" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
-									         	</p><p><font face="olleh" size="4" color="black">이름 *</font>
-									         	<input id="signup-name" type="text" name="name" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
-									         	</p><p><font face="olleh" size="4" color="black">생년월일</font>
-									         	<input id="signup-birth" type="text" name="birth" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
-									         	</p><p><font face="olleh" size="4" color="black">그룹 *</font>
-									         	<select name="groups" id="signup-groups" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
+								         	<form action="play/signup" method="post"><br>
+									         	<p><font face="olleh" size="4" color="black">사번 *</font>
+									         	<input id="signup-mid" type="text" name="mid" 
+									         		style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
+									         	<br><span id="mid_errormsg" class="errormsg">사번을 입력해주세요.</span>
+									         	</p>
+									         	<p><font face="olleh" size="4" color="black">비밀번호 *</font>
+									         	<input id="signup-pw" type="password" name="pw" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
+									         	<br><span id="pw_errormsg" class="errormsg">비밀번호을 입력해주세요.</span>
+									         	</p>
+									         	<p><font face="olleh" size="4" color="black">이름 *</font>
+									         	<input id="signup-name" type="text" name="name" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
+									         	<br><span id="name_errormsg" class="errormsg">비밀번호을 입력해주세요.</span>
+									         	</p>
+									         	<p><font face="olleh" size="4" color="black">생년월일</font>
+									         	<input id="signup-birth" type="text" name="birth" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
+									         	</p>
+									         	<p><font face="olleh" size="4" color="black">그룹 *</font>
+									         	<select name="groups" id="signup-groups" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         		<option value="kt">kt</option><option value="ktds">kt ds</option><option value="ktms">kt m&s</option>
 									         		<option value="kttelecop">kt telecop</option><option value="kth">kth</option><option value="ktmhows">kt mhows</option>
 									         		<option value="nasmedia">nasmedia</option><option value="ktiscs">kt is/cs</option><option value="ktsat">kt sat</option>
@@ -97,9 +106,9 @@
 									         		<option value="ktskylife">kt skylife</option><option value="ktestate">kt estate</option><option value="ktservice">kt service</option>
 									         	</select>
 									         	</p><p><font face="olleh" size="4" color="black">PHONE</font>
-									         	<input id="signup-phone" type="text" name="phone" pattern="\d{3}\-\d{3}\-\d{3}"  title="010-xxx-xxxx 형식으로 입력해주세요" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
+									         	<input id="signup-phone" type="text" name="phone" pattern="\d{3}\-\d{3}\-\d{3}"  title="010-xxx-xxxx 형식으로 입력해주세요" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         	</p><p><font face="olleh" size="4" color="black">EMAIL *</font>
-									         	<input id="signup-email" type="email" name="email" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
+									         	<input id="signup-email" type="email" name="email" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         	</p>
 									         	<br><p style="width:70px; margin:0 auto"><input id="signup-btn" type="button" value="가입" ></p>
 								         	</form>
@@ -115,9 +124,9 @@
 								         	<h1 style="text-align:center">GIGA PLAY 로그인</h1>
 								         	<form name="login" method="post">
 									         	<br><p><font face="olleh" size="4" color="black">사번 *</font>
-									         	<input type="text" name="mid" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
+									         	<input type="text" name="mid" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         	</p><p><font face="olleh" size="4" color="black">비밀번호 *</font>
-									         	<input type="password" name="mid" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
+									         	<input type="password" name="mid" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         	</p>
 									         	<br><p style="width:70px; margin:0 auto"><input type="submit" value="로그인" ></p>
 								         	</form>
@@ -258,24 +267,8 @@
 	<script src="js/fullmotion-main.js"></script>
 	<script src="js/util.js"></script>
 	<script src="js/modal.js"></script>
-	<script scr="js/sign.js"></script>
-	<script type="text/javascript">
-		var getParameter = function (param) {
-		    var returnValue;
-		    var url = location.href;
-		    var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
-		    for (var i = 0; i < parameters.length; i++) {
-		        var varName = parameters[i].split('=')[0];
-		        if (varName.toUpperCase() == param.toUpperCase()) {
-		            returnValue = parameters[i].split('=')[1];
-		            return decodeURIComponent(returnValue);
-		        }
-		    }
-		};
-		if(getParameter('error') == "yes") {
-			alert("이미 가입한 회원입니다");
-		}
-	</script>
+	<script src="js/sign.js" charset='utf-8'></script>
+	
 	
 </body>
 </html>

@@ -1,0 +1,15 @@
+.errormsg {
+	color: red;
+	font-size: 5px;
+	height: 6px;
+	clear: both;
+}
+#mid_errormsg {
+	display:none;
+}
+#pw_errormsg {
+	display:none;
+}
+#name_errormsg {
+	display:none;
+}

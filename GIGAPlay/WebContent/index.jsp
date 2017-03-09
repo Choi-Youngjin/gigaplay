@@ -81,15 +81,15 @@
 								         	<h1 style="text-align:center">GIGA PLAY 회원가입</h1>
 								         	<form action="play/signup" method="post">
 									         	<br><p><font face="olleh" size="4" color="black">사번 *</font>
-									         	<input type="text" name="mid" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
+									         	<input id="signup-mid" type="text" name="mid" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
 									         	</p><p><font face="olleh" size="4" color="black">비밀번호 *</font>
-									         	<input type="password" name="pw" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
+									         	<input id="signup-pw" type="password" name="pw" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
 									         	</p><p><font face="olleh" size="4" color="black">이름 *</font>
-									         	<input type="text" name="name" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
+									         	<input id="signup-name" type="text" name="name" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
 									         	</p><p><font face="olleh" size="4" color="black">생년월일</font>
-									         	<input type="text" name="birth" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
+									         	<input id="signup-birth" type="text" name="birth" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
 									         	</p><p><font face="olleh" size="4" color="black">그룹 *</font>
-									         	<select name="groups" id="groups" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
+									         	<select name="groups" id="signup-groups" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
 									         		<option value="kt">kt</option><option value="ktds">kt ds</option><option value="ktms">kt m&s</option>
 									         		<option value="kttelecop">kt telecop</option><option value="kth">kth</option><option value="ktmhows">kt mhows</option>
 									         		<option value="nasmedia">nasmedia</option><option value="ktiscs">kt is/cs</option><option value="ktsat">kt sat</option>
@@ -97,11 +97,11 @@
 									         		<option value="ktskylife">kt skylife</option><option value="ktestate">kt estate</option><option value="ktservice">kt service</option>
 									         	</select>
 									         	</p><p><font face="olleh" size="4" color="black">PHONE</font>
-									         	<input type="text" name="phone" pattern="\d{3}\-\d{3}\-\d{3}"  title="010-xxx-xxxx 형식으로 입력해주세요" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
+									         	<input id="signup-phone" type="text" name="phone" pattern="\d{3}\-\d{3}\-\d{3}"  title="010-xxx-xxxx 형식으로 입력해주세요" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
 									         	</p><p><font face="olleh" size="4" color="black">EMAIL *</font>
-									         	<input type="email" name="email" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
+									         	<input id="signup-email" type="email" name="email" style="color:red; width:80%; float:right; height:2em; margin-top:3px">
 									         	</p>
-									         	<br><p style="width:70px; margin:0 auto"><input type="submit" value="가입" ></p>
+									         	<br><p style="width:70px; margin:0 auto"><input id="signup-btn" type="button" value="가입" ></p>
 								         	</form>
 								        </div>
 								    </div>
@@ -258,6 +258,7 @@
 	<script src="js/fullmotion-main.js"></script>
 	<script src="js/util.js"></script>
 	<script src="js/modal.js"></script>
+	<script scr="js/sign.js"></script>
 	<script type="text/javascript">
 		var getParameter = function (param) {
 		    var returnValue;

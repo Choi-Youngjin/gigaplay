@@ -21,7 +21,7 @@ $(document).ready(function() {
 	           success : function(data) {
 	                 // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
 	                 // TODO
-	        	   var test = eval('(' + data + ')');
+	        	   var test = JSON.parse(data);
 	        	   if(test.err == "redun") {
 	        		   $('#mid_errormsg_redun').css('display', 'inline');
 	        	   }

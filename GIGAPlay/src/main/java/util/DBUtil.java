@@ -9,14 +9,15 @@ import java.sql.Statement;
 public class DBUtil {
 	static {
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			//Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException c) {
 			c.printStackTrace();
 		}
 	}
 
 	public static Connection getConnection() throws SQLException {
-		return DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "scott", "tiger");
+		return DriverManager.getConnection("jdbc:mysql://192.168.0.35:3306/cf_634b3ef7_3aa5_41fb_8a40_4469bd40e9e2?user=QkaRDVffq9QPcUti&password=nYmHZkD2mAc585ao");
 	}
 
 	// DML��

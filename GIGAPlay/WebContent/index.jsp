@@ -85,7 +85,7 @@
 									         	<input id="signup-mid" type="text" name="mid" 
 									         		style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         	<br><span id="mid_errormsg_null" class="errormsg">사번을 입력해주세요.</span>
-									         	<br><span id="mid_errormsg_redun" class="errormsg">이미 가입된 회원입니다.</span>
+									         	<span id="mid_errormsg_redun" class="errormsg">이미 가입된 회원입니다.</span>
 									         	</p>
 									         	<p><font face="olleh" size="4" color="black">비밀번호 *</font>
 									         	<input id="signup-pw" type="password" name="pw" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">

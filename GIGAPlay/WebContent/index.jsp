@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="css/fullmotion-main2.css">
 <link rel="stylesheet" href="css/sign.css">
 <!-- 안녕하십니까!! -->
+<!-- 수정판 2 -->
 <style type="text/css">
 	@font-face {
 		font-family: olleh;
@@ -103,7 +104,7 @@
 									         		<option value="kt">kt</option><option value="ktds">kt ds</option><option value="ktms">kt m&s</option>
 									         		<option value="kttelecop">kt telecop</option><option value="kth">kth</option><option value="ktmhows">kt mhows</option>
 									         		<option value="nasmedia">nasmedia</option><option value="ktiscs">kt is/cs</option><option value="ktsat">kt sat</option>
-									         		<option value="vp">vp</option><option value="kt">kt</option><option value="bccard">bc card</option>
+									         		<option value="vp">vp</option><option value="bccard">bc card</option>
 									         		<option value="ktskylife">kt skylife</option><option value="ktestate">kt estate</option><option value="ktservice">kt service</option>
 									         	</select>
 									         	</p><p><font face="olleh" size="4" color="black">PHONE</font>

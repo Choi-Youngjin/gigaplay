@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="css/sima-style.css">
 <link rel="stylesheet" href="css/fullmotion-main2.css">
 <link rel="stylesheet" href="css/sign.css">
+<!-- 안녕 -->
 <!-- 안녕하십니까!! -->
 <!-- 수정판 2 -->
 <style type="text/css">
@@ -28,20 +29,6 @@
 		width: 100%;
 		height: 30px;
 		margin-top: 30px;
-	}
-	::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    	color: #909;
-	}
-	:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-	   color:    #909;
-	   opacity:  1;
-	}
-	::-moz-placeholder { /* Mozilla Firefox 19+ */
-	   color:    #909;
-	   opacity:  1;
-	}
-	:-ms-input-placeholder { /* Internet Explorer 10-11 */
-	   color:    #909;
 	}
 	.regular {
 		display: flex;
@@ -112,22 +99,20 @@
 									         	<br><span id="name_errormsg" class="errormsg">이름을 입력해주세요.</span>
 									         	</p>
 									         	<p><font face="olleh" size="4" color="black">생년월일</font>
-									         	<input id="signup-birth" type="text" name="birth" placeholder="yyyy-mm-dd 형식으로 입력해주세요." 
-									         		pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" 
-									         		title="제대로 된 형식이 아닙니다. yyyy-dd-mm" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
+									         	<input id="signup-birth" type="text" name="birth" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         	</p>
 									         	<p><font face="olleh" size="4" color="black">그룹 *</font>
 									         	<select name="groups" id="signup-groups" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         		<option value="kt">kt</option><option value="ktds">kt ds</option><option value="ktms">kt m&s</option>
 									         		<option value="kttelecop">kt telecop</option><option value="kth">kth</option><option value="ktmhows">kt mhows</option>
 									         		<option value="nasmedia">nasmedia</option><option value="ktiscs">kt is/cs</option><option value="ktsat">kt sat</option>
-									         		<option value="vp">vp</option><option value="bccard">bc card</option>
+									         		<option value="vp">vp</option><option value="kt">kt</option><option value="bccard">bc card</option>
 									         		<option value="ktskylife">kt skylife</option><option value="ktestate">kt estate</option><option value="ktservice">kt service</option>
 									         	</select>
 									         	</p><p><font face="olleh" size="4" color="black">PHONE</font>
-									         	<input id="signup-phone" type="text" name="phone" pattern="0\d{1,2}\-\d{3,4}\-\d{4}"  title="010-xxx-xxxx 형식으로 입력해주세요" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
+									         	<input id="signup-phone" type="text" name="phone" pattern="\d{3}\-\d{3}\-\d{3}"  title="010-xxx-xxxx 형식으로 입력해주세요" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         	</p><p><font face="olleh" size="4" color="black">EMAIL *</font>
-									         	<input id="signup-email" type="email" name="email" placeholder="ex) dayer@kt.com" maxlength="30" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
+									         	<input id="signup-email" type="email" name="email" maxlength="30" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         	<br><span id="email_errormsg" class="errormsg">이메일을 입력해주세요.</span>
 									         	</p>
 									         	<br><p style="width:70px; margin:0 auto"><input id="signup-btn" type="button" value="가입" ></p>
@@ -144,15 +129,11 @@
 								         	<h1 style="text-align:center">GIGA PLAY 로그인</h1>
 								         	<form name="login" method="post">
 									         	<br><p><font face="olleh" size="4" color="black">사번 *</font>
-									         	<input id="login-mid" type="text" name="mid" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
-									         	<br><span id="login_errormid" class="errormsg">사번을 입력해주세요.</span>
-									         	<span id="login_nomid" class="errormsg">존재하지 않는 사번입니다.</span>
+									         	<input type="text" name="mid" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         	</p><p><font face="olleh" size="4" color="black">비밀번호 *</font>
-									         	<input id="login-pw" type="password" name="mid" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
-									         	<br><span id="login_errorpw" class="errormsg">비밀번호를 입력해주세요.</span>
-									         	<span id="login_fail" class="errormsg">사번과 비밀번호가 일치하지 않습니다.</span>
+									         	<input type="password" name="mid" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         	</p>
-									         	<br><p style="width:70px; margin:0 auto"><input id="login-btn" type="button" value="로그인" ></p>
+									         	<br><p style="width:70px; margin:0 auto"><input type="submit" value="로그인" ></p>
 								         	</form>
 								        </div>
 								    </div>

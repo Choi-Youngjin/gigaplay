@@ -68,7 +68,7 @@
 							</button>	
 							<div id="navbar">
 								<ul>
-									<li><a class="page-scroll" href="index.html"><font face="olleh" color="black">Home</font></a></li> 
+									<li><a class="page-scroll" href="index.jsp"><font face="olleh" color="black">Home</font></a></li> 
 									<li><a class="btn trigger-login" href="#" style="border:0"><font face="olleh" color="black">로그인</font></a></li>
 									<li><a class="btn trigger-signup"  href="#" style="border:0"><font face="olleh" color="black">회원가입</font></a></li>
 								</ul>
@@ -82,17 +82,17 @@
 								         	<h1 style="text-align:center">GIGA PLAY 회원가입</h1>
 								         	<form action="play/signup" method="post"><br>
 									         	<p><font face="olleh" size="4" color="black">사번 *</font>
-									         	<input id="signup-mid" type="text" name="mid" 
+									         	<input id="signup-mid" type="text" name="mid" maxlength="10"
 									         		style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         	<br><span id="mid_errormsg_null" class="errormsg">사번을 입력해주세요.</span>
 									         	<span id="mid_errormsg_redun" class="errormsg">이미 가입된 회원입니다.</span>
 									         	</p>
 									         	<p><font face="olleh" size="4" color="black">비밀번호 *</font>
-									         	<input id="signup-pw" type="password" name="pw" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
+									         	<input id="signup-pw" type="password" name="pw" maxlength="20" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         	<br><span id="pw_errormsg" class="errormsg">비밀번호을 입력해주세요.</span>
 									         	</p>
 									         	<p><font face="olleh" size="4" color="black">이름 *</font>
-									         	<input id="signup-name" type="text" name="name" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
+									         	<input id="signup-name" type="text" name="name" maxlength="5" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         	<br><span id="name_errormsg" class="errormsg">이름을 입력해주세요.</span>
 									         	</p>
 									         	<p><font face="olleh" size="4" color="black">생년월일</font>
@@ -109,7 +109,7 @@
 									         	</p><p><font face="olleh" size="4" color="black">PHONE</font>
 									         	<input id="signup-phone" type="text" name="phone" pattern="\d{3}\-\d{3}\-\d{3}"  title="010-xxx-xxxx 형식으로 입력해주세요" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         	</p><p><font face="olleh" size="4" color="black">EMAIL *</font>
-									         	<input id="signup-email" type="email" name="email" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
+									         	<input id="signup-email" type="email" name="email" maxlength="30" style="color:red; width:80%; float:right; height:1.6em; margin-top:3px">
 									         	<br><span id="email_errormsg" class="errormsg">이메일을 입력해주세요.</span>
 									         	</p>
 									         	<br><p style="width:70px; margin:0 auto"><input id="signup-btn" type="button" value="가입" ></p>

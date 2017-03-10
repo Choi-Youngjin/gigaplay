@@ -22,7 +22,7 @@ public class MemberController {
 	
 	@SuppressWarnings("null")
 	@RequestMapping(value="signup", method=RequestMethod.POST) 
-	public @ResponseBody String signup(HttpServletRequest req, HttpServletResponse res, MemberDTO newMember) throws Exception{
+	public @ResponseBody String signup(HttpServletRequest req, HttpServletResponse res, @RequestParam("groups") String groups, MemberDTO newMember) throws Exception{
 		JSONObject jsonObj = new JSONObject();
 		System.out.println(newMember.getMid());
 		System.out.println(newMember.getPw());
@@ -50,8 +50,9 @@ public class MemberController {
 			return jsonObj.toString();
 		}
 		if(MemberDAO.getMembers(newMember.getMid()) == null) {
+			newMember.setGroup(groups);
 			MemberDAO.addMember(newMember);
-			jsonObj.put("err", "email_null");
+			jsonObj.put("succ", "signup");
 			return jsonObj.toString();
 		}
 		else {

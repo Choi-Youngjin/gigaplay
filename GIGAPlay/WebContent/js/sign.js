@@ -22,6 +22,11 @@ $(document).ready(function() {
 	                 // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
 	                 // TODO
 	        	   var test = JSON.parse(data);
+	        	   if(test.succ == "signup") {
+	        		   $('.modal-wrapper').toggleClass('open');
+	        		   $('.page-wrapper').toggleClass('body-scroll')
+	        		   return false;
+	        	   }
 	        	   if(test.err == "redun") {
 	        		   $('#mid_errormsg_redun').css('display', 'inline');
 	        	   }

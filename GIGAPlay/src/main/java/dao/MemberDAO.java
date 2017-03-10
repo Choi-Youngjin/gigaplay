@@ -23,7 +23,7 @@ public class MemberDAO {
 			PreparedStatement pstmt = null;
 			try{
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("insert into member(mid, pw, name, birth, groups, phone, email) values(?, ?, ?, to_date(?, 'yyyymmdd'), ?, ?, ?)");
+				pstmt = con.prepareStatement("insert into member(mid, pw, name, birth, groups, phone, email) values(?, ?, ?, str_to_date(?, '%Y-%m-%d'), ?, ?, ?)");
 				pstmt.setString(1, member.getMid());
 				pstmt.setString(2, member.getPw());
 				pstmt.setString(3, member.getName());

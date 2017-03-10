@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="css/sima-style.css">
 <link rel="stylesheet" href="css/fullmotion-main2.css">
 <link rel="stylesheet" href="css/sign.css">
-
+<!-- ¾È³ç -->
 <style type="text/css">
 	@font-face {
 		font-family: olleh;

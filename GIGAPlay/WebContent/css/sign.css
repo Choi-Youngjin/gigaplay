@@ -1,8 +1,8 @@
 .before-login {
-	
+	display:list-item;
 }
 .after-login {
-	
+	display:none;
 }
 .errormsg {
 	color: red;

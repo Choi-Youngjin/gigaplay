@@ -83,7 +83,7 @@
 							</button>	
 							<div id="navbar">
 								<ul>
-									<li><a class="page-scroll" href="index.jsp"><font face="olleh" color="black">Home</font></a></li> 
+									<li><a class="page-scroll" href="index.jsp" style="display:list-item"><font face="olleh" color="black">Home</font></a></li> 
 									<li><a class="btn trigger-login before-login" href="#" style="border:0"><font face="olleh" color="black">로그인</font></a></li>
 									<li><a class="btn trigger-signup before-login"  href="#" style="border:0"><font face="olleh" color="black">회원가입</font></a></li>
 									<li><a class="btn trigger-logout after-login"  href="#" style="border:0"><font face="olleh" color="black">로그아웃</font></a></li>

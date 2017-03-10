@@ -72,6 +72,8 @@ $(document).ready(function() {
 	        	   if(test.succ == "login") {
 	        		   $('.modal-wrapper-login').toggleClass('open');
 	        		   $('.page-wrapper').toggleClass('body-scroll')
+	        		   $('.before-login').css('display', 'none');
+	        		   $('.after-login').css('display', 'list-item');
 	        		   return false;
 	        	   }
 	        	   if(test.err == "mid_null") {

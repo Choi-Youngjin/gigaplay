@@ -103,7 +103,7 @@ position : relative;
 }
 #nav_menu ul a {
 color : #ffffff;
-display : block;
+/*display : block;*/
 font-family : lato;
 font-size : 14px;
 font-weight : bold;

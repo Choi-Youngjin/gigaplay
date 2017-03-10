@@ -46,9 +46,46 @@ $(document).ready(function() {
 	        	   }
 	        	  
 	           },
-	           complete : function(data) {
-	                 // 통신이 실패했어도 완료가 되었을 때 이 함수를 타게 된다.
+	           error : function(xhr, status, error) {
+	                 alert("ERROR!");
+	           }
+	     });
+	}); 
+	
+	$("#login-btn").click(function() {
+		 $('#login_errormid').css('display', 'none');
+		 $('#login_errorpw').css('display', 'none');
+		 $('#login_nomid').css('display', 'none');
+		 $('#login_fail').css('display', 'none');
+		$.ajax({
+	           type:"POST",
+	           url:"play/login",
+	           data: {
+	        	   	"mid":$('#login-mid').val(),
+		   		   	"pw":$('#login-pw').val(),
+	           },
+	           datatype:"JSON", 
+	           success : function(data) {
+	                 // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
 	                 // TODO
+	        	   var test = JSON.parse(data);  
+	        	   if(test.succ == "login") {
+	        		   $('.modal-wrapper-login').toggleClass('open');
+	        		   $('.page-wrapper').toggleClass('body-scroll')
+	        		   return false;
+	        	   }
+	        	   if(test.err == "mid_null") {
+	        		   $('#login_errormid').css('display', 'inline');
+	        	   }
+	        	   if(test.err == "pw_null") {
+	        		   $('#login_errorpw').css('display', 'inline');
+	        	   }
+	        	   if(test.err == "mid_novalue") {
+	        		   $('#login_nomid').css('display', 'inline');
+	        	   }
+	        	   if(test.err == "loginfail") {
+	        		   $('#login_fail').css('display', 'inline');
+	        	   }
 	           },
 	           error : function(xhr, status, error) {
 	                 alert("ERROR!");

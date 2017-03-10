@@ -24,41 +24,60 @@ public class MemberController {
 	@RequestMapping(value="signup", method=RequestMethod.POST) 
 	public @ResponseBody String signup(HttpServletRequest req, HttpServletResponse res, @RequestParam("groups") String groups, MemberDTO newMember) throws Exception{
 		JSONObject jsonObj = new JSONObject();
-		System.out.println(newMember.getMid());
-		System.out.println(newMember.getPw());
-		System.out.println("11");
 		if(MemberDAO.getMembers(newMember.getMid()) != null) {
 			jsonObj.put("err", "redun");
 			return jsonObj.toString();
 		}
+		
 		if(newMember.getMid().equals("")) {
-			System.out.println("13");
 			jsonObj.put("err", "mid_null");
-			return jsonObj.toString();
 		}
-		if(newMember.getPw().equals("")) {
-			System.out.println("22");
+		else if(newMember.getPw().equals("")) {
 			jsonObj.put("err", "pw_null");
-			return jsonObj.toString();
 		}
-		if(newMember.getName().equals("")) {
+		else if(newMember.getName().equals("")) {
 			jsonObj.put("err", "name_null");
-			return jsonObj.toString();
 		}
-		if(newMember.getEmail().equals("")) {
+		else if(newMember.getEmail().equals("")) {
 			jsonObj.put("err", "email_null");
-			return jsonObj.toString();
 		}
-		if(MemberDAO.getMembers(newMember.getMid()) == null) {
+		else if(MemberDAO.getMembers(newMember.getMid()) == null) {
 			newMember.setGroup(groups);
 			MemberDAO.addMember(newMember);
 			jsonObj.put("succ", "signup");
-			return jsonObj.toString();
 		}
 		else {
 			jsonObj.put("err", "fail");
-			return jsonObj.toString();
 		}
+		return jsonObj.toString();
+	}
+	
+	@SuppressWarnings("null")
+	@RequestMapping(value="login", method=RequestMethod.POST) 
+	public @ResponseBody String login(HttpServletRequest req, HttpServletResponse res, MemberDTO newMember) throws Exception{
+		JSONObject jsonObj = new JSONObject();
+		System.out.println(newMember.getMid());
+		System.out.println(newMember.getPw());
+		
+		if(newMember.getMid().equals("")) {
+			System.out.println("사번 입력하지 않음");
+			jsonObj.put("err", "mid_null");
+		}
+		else if(newMember.getPw().equals("")) {
+			System.out.println("비밀번호 입력하지 않음");
+			jsonObj.put("err", "pw_null");
+		}
+		else if(MemberDAO.getMembers(newMember.getMid()) == null) {
+			jsonObj.put("err", "mid_novalue");
+		}
+		else if(!(newMember.getPw().equals(MemberDAO.getMembers(newMember.getMid()).getPw()))) {
+			jsonObj.put("err", "loginfail");
+		}
+		// 로그인 성공
+		else {
+			jsonObj.put("succ", "login");
+		}
+		return jsonObj.toString();
 	}
 	
 	@ExceptionHandler(Exception.class)

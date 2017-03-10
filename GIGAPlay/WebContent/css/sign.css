@@ -1,3 +1,7 @@
+.before-login {
+	
+}
+.after-
 .errormsg {
 	color: red;
 	font-size: 5px;
@@ -19,7 +23,6 @@
 #email_errormsg {
 	display:none;
 }
-
 #login_errormid {
 	display:none
 }

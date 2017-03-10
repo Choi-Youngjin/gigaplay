@@ -12,12 +12,12 @@ public class DBUtil {
 			//Class.forName("oracle.jdbc.driver.OracleDriver");
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException c) {
-			c.printStackTrace();
+			System.out.println(c.getMessage());
 		}
 	}
 
 	public static Connection getConnection() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://gigaplay.c3xqukejexe9.ap-northeast-2.rds.amazonaws.com:3306/gigaplay?user=root&password=root1234&autoReconnect=true&useSSL=false");
+		return DriverManager.getConnection("jdbc:mysql://gigaplay.c3xqukejexe9.ap-northeast-2.rds.amazonaws.com:3306/gigaplay?autoReconnect=true&useSSL=false", "root", "root1234");
 	}
 
 	// DML��

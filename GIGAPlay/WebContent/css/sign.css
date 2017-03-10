@@ -4,12 +4,18 @@
 	height: 6px;
 	clear: both;
 }
-#mid_errormsg {
+#mid_errormsg_redun {
+	display:none;
+}
+#mid_errormsg_null {
 	display:none;
 }
 #pw_errormsg {
 	display:none;
 }
 #name_errormsg {
+	display:none;
+}
+#email_errormsg {
 	display:none;
 }

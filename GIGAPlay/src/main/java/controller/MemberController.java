@@ -27,6 +27,10 @@ public class MemberController {
 		System.out.println(newMember.getMid());
 		System.out.println(newMember.getPw());
 		System.out.println("11");
+		if(MemberDAO.getMembers(newMember.getMid()) != null) {
+			jsonObj.put("err", "redun");
+			return jsonObj.toString();
+		}
 		if(newMember.getMid().equals("")) {
 			System.out.println("13");
 			jsonObj.put("err", "mid_null");
@@ -41,13 +45,19 @@ public class MemberController {
 			jsonObj.put("err", "name_null");
 			return jsonObj.toString();
 		}
+		if(newMember.getEmail().equals("")) {
+			jsonObj.put("err", "email_null");
+			return jsonObj.toString();
+		}
 		if(MemberDAO.getMembers(newMember.getMid()) == null) {
-			//MemberDAO.addMember(newMember);
+			MemberDAO.addMember(newMember);
+			jsonObj.put("err", "email_null");
+			return jsonObj.toString();
 		}
 		else {
-		
+			jsonObj.put("err", "fail");
+			return jsonObj.toString();
 		}
-		return jsonObj.toString();
 	}
 	
 	@ExceptionHandler(Exception.class)

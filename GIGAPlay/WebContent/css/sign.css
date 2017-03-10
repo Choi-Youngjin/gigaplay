@@ -19,3 +19,16 @@
 #email_errormsg {
 	display:none;
 }
+
+#login_errormid {
+	display:none
+}
+#login_nomid {
+	display:none
+}
+#login_errorpw {
+	display:none
+}
+#login_fail {
+	display:none
+}

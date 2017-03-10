@@ -2,6 +2,7 @@ package controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -75,10 +76,24 @@ public class MemberController {
 		}
 		// 로그인 성공
 		else {
+			HttpSession s = req.getSession();
+			s.setAttribute("session_mid", newMember.getMid());
+			s.setAttribute("session_name", MemberDAO.getMembers(newMember.getMid()).getName());
 			jsonObj.put("succ", "login");
 		}
 		return jsonObj.toString();
 	}
+	
+	@RequestMapping(value="logout", method=RequestMethod.POST) 
+	public @ResponseBody String login(HttpServletRequest req) throws Exception{
+		JSONObject jsonObj = new JSONObject();
+		HttpSession session = req.getSession();
+		session.invalidate();
+		session = null;
+		jsonObj.put("session", "true");
+		return jsonObj.toString();
+	}
+	
 	
 	@ExceptionHandler(Exception.class)
 	public void exceptionProcess(Exception e){

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,9 +86,15 @@
 							<div id="navbar">
 								<ul>
 									<li><a class="page-scroll" href="index.jsp" style="display:list-item"><font face="olleh" color="black">Home</font></a></li> 
-									<li><a class="btn trigger-login before-login" href="#" style="border:0"><font face="olleh" color="black">로그인</font></a></li>
-									<li><a class="btn trigger-signup before-login"  href="#" style="border:0"><font face="olleh" color="black">회원가입</font></a></li>
-									<li><a class="btn trigger-logout after-login"  href="#" style="border:0"><font face="olleh" color="black">로그아웃</font></a></li>
+									<c:if test="${!empty sessionScope.session_mid }">
+										<li><font face="olleh" color="black">${sessionScope.session_name }님 환영합니다.</font>
+										<li><a class="btn trigger-logout"  href="#" style="border:0"><font face="olleh" color="black">로그아웃</font></a></li>
+									</c:if>
+									<c:if test="${empty sessionScope.session_mid }">
+										<li><a class="btn trigger-login " href="#" style="border:0"><font face="olleh" color="black">로그인</font></a></li>
+										<li><a class="btn trigger-signup"  href="#" style="border:0"><font face="olleh" color="black">회원가입</font></a></li>
+									</c:if>
+									
 								</ul>
 								<!-- Modal -->
 								<div class="modal-wrapper">

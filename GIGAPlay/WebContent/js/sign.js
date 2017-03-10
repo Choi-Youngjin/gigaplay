@@ -72,9 +72,7 @@ $(document).ready(function() {
 	        	   if(test.succ == "login") {
 	        		   $('.modal-wrapper-login').toggleClass('open');
 	        		   $('.page-wrapper').toggleClass('body-scroll')
-	        		   $('.before-login').css('display', 'none');
-	        		   $('.after-login').css('display', 'list-item');
-	        		   return false;
+	        		   location.reload();
 	        	   }
 	        	   if(test.err == "mid_null") {
 	        		   $('#login_errormid').css('display', 'inline');
@@ -88,6 +86,22 @@ $(document).ready(function() {
 	        	   if(test.err == "loginfail") {
 	        		   $('#login_fail').css('display', 'inline');
 	        	   }
+	           },
+	           error : function(xhr, status, error) {
+	                 alert("ERROR!");
+	           }
+	     });
+	}); 
+	$(".trigger-logout").click(function() {
+		$.ajax({
+	           type:"POST",
+	           url:"play/logout",
+	           data: {
+	        	   	"session" : "true"
+	           },
+	           datatype:"JSON", 
+	           success : function(data) {
+	        	   location.reload();
 	           },
 	           error : function(xhr, status, error) {
 	                 alert("ERROR!");

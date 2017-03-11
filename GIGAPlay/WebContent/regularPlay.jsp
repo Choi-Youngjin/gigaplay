@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<div class="thumbnails" style="margin-top: 150px">
-	<div class="gathering-border">
-		<a onclick="location.href='plays.jsp?plays=regular'">정기 PLAY</a>
-	</div>
+<div class="thumbnails" >
 	<div class="regular">
 		<div class="box">
 			<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img

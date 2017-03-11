@@ -17,9 +17,46 @@
 <link rel="stylesheet" href="css/fullmotion-main2.css">
 <link rel="stylesheet" href="css/sign.css">
 <link rel="stylesheet" href="css/giga.css">
+<link rel="stylesheet" href="css/tab.css">
+<link rel="stylesheet" href="css/play.css">
 </head>
 <body class="page-wrapper">
 <%@ include file="header.jsp" %>
+
+<!-- Play 공통 -->
+<!-- 선택된 play가 뭔지 -->
+<div id="gathering-plays">
+	<div class="gathering-border-playpage">
+		<a onclick="location.href='plays.jsp?plays=regular'">정기 PLAY</a>
+	</div>
+	<div class="gathering-border-playpage">
+		<a onclick="location.href='plays.jsp?plays=temp'">번개 PLAY</a>
+	</div>
+	<div class="gathering-border-playpage">
+		<a onclick="location.href='plays.jsp?plays=edu'">멘토 PLAY</a>
+	</div>
+</div>
+
+
+<!-- tab.css 버튼 시작-->
+<div style="width:100%; height:60px; text-align:center; margin-top:20px;"> 				 		
+	<a href="javascript:;" class="code_view actionBtn7">
+		 <span>스포츠</span>
+	</a>
+	<a href="javascript:;" class="code_view actionBtn7">
+		 <span>문화/예술</span>
+	</a>
+	<a href="javascript:;" class="code_view actionBtn7">
+			<span>요리/음식</span>
+	</a>
+	<a href="javascript:;" class="code_view actionBtn7">
+			<span>봉사/나눔</span>
+	</a>
+	<a href="javascript:;" class="code_view actionBtn7">
+			<span>게임/레저</span>
+	</a>
+</div>			
+<!-- tab.css 버튼 끝 -->	
 
 <% if(request.getParameter("plays").equals("regular")) {%> 
 	<%@ include file="regularPlay.jsp" %>
@@ -41,5 +78,6 @@
 <script src="js/util.js"></script>
 <script src="js/modal.js"></script>
 <script src="js/sign.js" charset='utf-8'></script>
+<script src="js/plays.js"></script>
 </body>
 </html>

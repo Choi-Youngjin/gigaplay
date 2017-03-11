@@ -39,8 +39,44 @@
 	margin-bottom:10px;
 }
 .gathering-border a{
+	cursor: pointer;
 	font-family: olleh;
 	font-size: 20px;
 	color: black;
+}
 
+#gathering-plays {	
+	text-align: center;
+	margin-top: 150px;
+}
+.gathering-border-playpage {
+	-moz-transition:background-color .5s ease;   
+  	-o-transition:background-color .5s ease;   
+  	-ms-transition:background-color .5s ease;   
+  	-webkit-transition:background-color .5s ease;   
+	translation: background-color .5s ease;
+	display: inline;
+	font-family: olleh;
+	font-size: 20px;
+	src: url(etc/olleh.ttf);
+	width: 15%;
+	border: 3px red solid;
+	text-align: center;
+	color: black;
+	padding: 10px 30px;
+	margin-bottom:10px;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.gathering-border-playpage a{
+	-moz-transition:color .5s ease;   
+  	-o-transition:color .5s ease;   
+  	-ms-transition:color .5s ease;   
+  	-webkit-transition:color .5s ease;   
+	translation: color .5s ease;
+	cursor: pointer;
+	font-family: olleh;
+	font-size: 20px;
+	color: black;
 }

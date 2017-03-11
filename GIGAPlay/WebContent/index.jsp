@@ -10,58 +10,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/bootstrap.css">
-
 <link rel="stylesheet" href="css/modal.css">
-
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/owl.carousel.css">
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/sima-style.css">
 <link rel="stylesheet" href="css/fullmotion-main2.css">
 <link rel="stylesheet" href="css/sign.css">
-
-<style type="text/css">
-	@font-face {
-		font-family: olleh;
-		src: url(etc/olleh.ttf);
-	}
-	#main2 {
-		width: 100%;
-		height: 30px;
-		margin-top: 30px;
-	}
-	::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    	color: #909;
-	}
-	:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-	   color:    #909;
-	   opacity:  1;
-	}
-	::-moz-placeholder { /* Mozilla Firefox 19+ */
-	   color:    #909;
-	   opacity:  1;
-	}
-	:-ms-input-placeholder { /* Internet Explorer 10-11 */
-	   color:    #909;
-	}
-	.regular {
-		display: flex;
-	}
-	.temp {
-		display: flex;
-	}
-	.gathering-border {
-		font-family: olleh;
-		font-size: 20px;
-		src: url(etc/olleh.ttf);
-		width: 100%;
-		border: 3px red solid;
-		text-align: center;
-		color: black;
-		padding: 10px;
-		margin-bottom:10px;
-	}
-</style>
+<link rel="stylesheet" href="css/giga.css">
 
 </head>
 <body class="page-wrapper">

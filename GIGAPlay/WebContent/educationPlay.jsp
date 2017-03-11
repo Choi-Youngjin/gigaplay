@@ -2,30 +2,32 @@
 
 <div class="thumbnails" style="margin-top: 150px">
 	<div class="gathering-border">
-		<a onclick="location.href='plays.jsp?plays=regular'">정기 PLAY</a>
+		<a onclick="location.href='plays.jsp?plays=edu'">멘토 PLAY</a>
 	</div>
-	<div class="regular">
+	<div class="temp">
 		<div class="box">
 			<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img
-				src="images/pic03.jpg" alt="" /></a>
+				src="images/pic04.jpg" alt="" /></a>
 			<div class="inner">
-				<h3>동호회1</h3>
-				<p>설명설명설명설명</p>
+				<h3>Nascetur nunc varius commodo</h3>
+				<p>Interdum amet accumsan placerat commodo ut amet aliquam
+					blandit nunc tempor lobortis nunc non. Mi accumsan.</p>
 			</div>
 		</div>
 
 		<div class="box">
 			<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img
-				src="images/pic03.jpg" alt="" /></a>
+				src="images/pic04.jpg" alt="" /></a>
 			<div class="inner">
-				<h3>kt 축구 동호회</h3>
-				<p>발로차 싸커</p>
+				<h3>Nascetur nunc varius commodo</h3>
+				<p>Interdum amet accumsan placerat commodo ut amet aliquam
+					blandit nunc tempor lobortis nunc non. Mi accumsan.</p>
 			</div>
 		</div>
 
 		<div class="box">
 			<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img
-				src="images/pic03.jpg" alt="" /></a>
+				src="images/pic04.jpg" alt="" /></a>
 			<div class="inner">
 				<h3>Nascetur nunc varius commodo</h3>
 				<p>Interdum amet accumsan placerat commodo ut amet aliquam
@@ -33,4 +35,6 @@
 			</div>
 		</div>
 	</div>
+</div>
+
 </div>

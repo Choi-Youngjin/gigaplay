@@ -66,3 +66,17 @@
 .actionTxtType5:hover .view_txt {
 	 color:#fff;
 }
+
+.temp-play-add-view {
+	cursor: pointer;
+	text-align:center;
+	height: 40px;
+	background: black;
+	margin-bottom: 15px;
+}
+.temp-play-add-view p {
+	position: relative;
+	top: 7px;
+	color:white;
+	font-family: olleh;
+}

@@ -28,17 +28,28 @@
 	display: flex;
 }
 .gathering-border {
+	-moz-transition:background-color .5s ease;   
+  	-o-transition:background-color .5s ease;   
+  	-ms-transition:background-color .5s ease;   
+  	-webkit-transition:background-color .5s ease;   
+	translation: background-color .5s ease;
 	font-family: olleh;
 	font-size: 20px;
 	src: url(etc/olleh.ttf);
-	width: 100%;
-	border: 3px red solid;
+	width: 95%;
+	border: 2px black solid;
+	border-radius: 10px;
 	text-align: center;
 	color: black;
 	padding: 10px;
 	margin-bottom:10px;
 }
 .gathering-border a{
+	-moz-transition:color .5s ease;   
+  	-o-transition:color .5s ease;   
+  	-ms-transition:color .5s ease;   
+  	-webkit-transition:color .5s ease;   
+	translation: color .5s ease;
 	cursor: pointer;
 	font-family: olleh;
 	font-size: 20px;
@@ -60,9 +71,26 @@
 	font-size: 20px;
 	src: url(etc/olleh.ttf);
 	width: 15%;
-	border: 3px red solid;
+	border: 2px black solid;
+	border-radius: 5px;
 	text-align: center;
 	color: black;
+	padding: 10px 30px;
+	margin-bottom:10px;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.gathering-border-playpage-on {
+	background: black;
+	display: inline;
+	font-family: olleh;
+	font-size: 20px;
+	src: url(etc/olleh.ttf);
+	width: 15%;
+	border: 2px black solid;
+	border-radius: 5px;
+	text-align: center;
 	padding: 10px 30px;
 	margin-bottom:10px;
 	margin-left: 5%;
@@ -79,4 +107,16 @@
 	font-family: olleh;
 	font-size: 20px;
 	color: black;
+}
+
+.gathering-border-playpage-on a{
+	-moz-transition:color .5s ease;   
+  	-o-transition:color .5s ease;   
+  	-ms-transition:color .5s ease;   
+  	-webkit-transition:color .5s ease;   
+	translation: color .5s ease;
+	cursor: pointer;
+	font-family: olleh;
+	font-size: 20px;
+	color: white;
 }

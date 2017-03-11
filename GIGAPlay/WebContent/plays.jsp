@@ -26,20 +26,41 @@
 <!-- Play 공통 -->
 <!-- 선택된 play가 뭔지 -->
 <div id="gathering-plays">
-	<div class="gathering-border-playpage">
-		<a onclick="location.href='plays.jsp?plays=regular'">정기 PLAY</a>
-	</div>
-	<div class="gathering-border-playpage">
-		<a onclick="location.href='plays.jsp?plays=temp'">번개 PLAY</a>
-	</div>
-	<div class="gathering-border-playpage">
-		<a onclick="location.href='plays.jsp?plays=edu'">멘토 PLAY</a>
-	</div>
+	<c:if test="${param.plays == 'regular' }">
+		<div class="gathering-border-playpage-on">
+			<a onclick="location.href='plays.jsp?plays=regular'">정기 PLAY</a>
+		</div>
+	</c:if>
+	<c:if test="${param.plays != 'regular' }">
+		<div class="gathering-border-playpage">
+			<a onclick="location.href='plays.jsp?plays=regular'">정기 PLAY</a>
+		</div>
+	</c:if>
+	<c:if test="${param.plays == 'temp' }">
+		<div class="gathering-border-playpage-on">
+			<a onclick="location.href='plays.jsp?plays=temp'">번개 PLAY</a>
+		</div>
+	</c:if>
+	<c:if test="${param.plays != 'temp' }">
+		<div class="gathering-border-playpage">
+			<a onclick="location.href='plays.jsp?plays=temp'">번개 PLAY</a>
+		</div>
+	</c:if>
+	<c:if test="${param.plays == 'edu' }">
+		<div class="gathering-border-playpage-on">
+			<a onclick="location.href='plays.jsp?plays=edu'">멘토 PLAY</a>
+		</div>
+	</c:if>
+	<c:if test="${param.plays != 'edu' }">
+		<div class="gathering-border-playpage">
+			<a onclick="location.href='plays.jsp?plays=edu'">멘토 PLAY</a>
+		</div>
+	</c:if>
 </div>
 
 
 <!-- tab.css 버튼 시작-->
-<div style="width:100%; height:60px; text-align:center; margin-top:20px;"> 				 		
+<div style="width:100%; height:45px; background-color:lightgrey; text-align:center; margin-top:20px;"> 				 		
 	<a href="javascript:;" class="code_view actionBtn7">
 		 <span>스포츠</span>
 	</a>

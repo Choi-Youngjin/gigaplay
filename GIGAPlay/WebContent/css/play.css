@@ -80,3 +80,18 @@
 	color:white;
 	font-family: olleh;
 }
+
+#pager {
+	background: black;
+	color: white;
+	text-align: center;
+}
+
+#pager a {
+	color: white;
+	font-family: olleh;
+}
+
+#pager a.pageNo.selected {
+	color: yellow;
+}

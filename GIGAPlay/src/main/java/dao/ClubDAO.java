@@ -80,7 +80,25 @@ public class ClubDAO {
 			}
 			return false;
 		}
-	
+		public static int getClubNum(String ctype) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			int num = 0;
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select count(*) from club where ctype=?");
+				pstmt.setString(1, ctype);
+				rset = pstmt.executeQuery();
+				if(rset.next()){
+					num = rset.getInt(1);
+				}
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return num;
+		}
+		
 		// select query 날리는 함수
 		public static ArrayList<ClubDTO> getClub(String ctype, int offset) throws SQLException{
 			Connection con = null;

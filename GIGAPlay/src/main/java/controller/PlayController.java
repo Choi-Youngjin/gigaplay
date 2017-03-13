@@ -21,14 +21,14 @@ public class PlayController {
 	@RequestMapping(value="getAllPlays", method=RequestMethod.GET) 
 	public ModelAndView getAllPlays(HttpServletRequest req) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		String type = req.getParameter("ctype");
+		String type = req.getParameter("plays");
 		String p = req.getParameter("pageNo");
 		int startPage = 0;
 		int endPage = 0;
 		int nowPage = 0;
 		int offset = 0;
 		
-		if(p == null || p.equals("")) {
+		if(p == null || p.equals("") || p.equals("0")) {
 			nowPage = 1;
 		}
 		else {
@@ -45,11 +45,29 @@ public class PlayController {
 		mv.setViewName("plays");
 		mv.addObject("plays", req.getParameter(type));
 		
+		if(type.equals("regular")) {
+			type = "정기";
+		} else if(type.equals("temp")) {
+			type = "번개";
+		} else {
+			type = "멘토";
+		}
 		ArrayList<ClubDTO> allPlays = ClubDAO.getClub(type, offset);
-		mv.addObject("cNum", allPlays.size());
+		int playNum = ClubDAO.getClubNum(type);
+		int temp = playNum/9 + 1;
+		if(playNum%9 == 0) {
+			temp--;
+		}
+		if(endPage > temp) {
+			endPage = temp;
+		}
+		mv.addObject("cNum", playNum);
 		mv.addObject("allPlays", allPlays);
-		mv.addObject("pNo", nowPage);
-			
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("endPage", endPage);
+		mv.addObject("startPage", startPage);
+		mv.addObject("totalPage", temp);
+		System.out.println("nowPage: " + nowPage + " , startPage: " + startPage + " , endPage: " + endPage + " , totalPage: " + temp);
 		return mv;
 	}
 	

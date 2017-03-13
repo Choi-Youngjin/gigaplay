@@ -19,25 +19,7 @@
 <link rel="stylesheet" href="../css/giga.css">
 <link rel="stylesheet" href="../css/tab.css">
 <link rel="stylesheet" href="../css/play.css">
-<style>
-#pager a {
-				text-decoration: none;
-				color: white;
-			}
-			
-			#pager a:hover {
-				color: orange;
-			}
-			
-			#pager a.pageNo {
-				margin-left: 5px;
-				margin-right: 5px;
-			}
-			
-			#pager a.pageNo.selected {
-				color: aqua;
-			}		
-</style>
+
 </head>
 <body class="page-wrapper">
 <%@ include file="header.jsp" %>
@@ -109,22 +91,22 @@
 <% }%>
 
 <div id="pager">
-	<a href="plays.jsp?plays=${param.plays }&pageNo=1">[처음]</a>
+	<a href="getAllPlays?plays=${param.plays }&pageNo=1">[처음]&nbsp;</a>
 
-	<c:if test="${groupNo>1}">
-		<a href="plays.jsp?plays=${param.plays }&pageNo=${startPageNo-pagesPerGroup}">[이전]</a>
+	<c:if test="${param.pageNo>5}">
+		<a href="getAllPlays?plays=${param.plays }&pageNo=${startPage - 1}">[이전]&nbsp;</a>
 	</c:if>
 
-	<c:forEach var="i" begin="${startPageNo}" end="${endPageNo}">
-		<a class="pageNo <c:if test="${pageNo==i}">selected</c:if>"
-			href="plays.jsp?plays=${param.plays }&pageNo=${i}">${i}</a>
+	<c:forEach var="i" begin="${requestScope.startPage}" end="${requestScope.endPage}">
+		<a class="pageNo <c:if test="${requestScope.nowPage==i}">selected</c:if>"
+			href="getAllPlays?plays=${param.plays }&pageNo=${i}">&nbsp;${i}&nbsp;</a>
 	</c:forEach>
 
-	<c:if test="${groupNo<totalGroupNo}">
-		<a href="plays.jsp?plays=${param.plays }&pageNo=${endPageNo+1}">[다음]</a>
+	<c:if test="${((endPage-1)/5) < ((totalPage-1)/5)}">
+		<a href="getAllPlays?plays=${param.plays }&pageNo=${endPage+1}">&nbsp;[다음]</a>
 	</c:if>
 
-	<a href="plays.jsp?plays=${param.plays }&pageNo=${totalPageNo}">[맨끝]</a>
+	<a href="getAllPlays?plays=${param.plays }&pageNo=${requestScope.totalPage}">&nbsp;[맨끝]</a>
 </div>
 
 	<!-- Footer -->

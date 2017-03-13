@@ -25,4 +25,18 @@ $( document ).ready(function() {
 	   //$('.page-wrapper').toggleClass('blur-it');
 	    return false;
   });
+  
+  $('.trigger-clubSignup').on('click', function() {
+      $('.modal-wrapper-clubSignup').toggleClass('open');
+      $('.page-wrapper').toggleClass('body-scroll');
+      //$('.page-wrapper').toggleClass('blur-it');
+      return false;
+   });
+   
+   $('.trigger-newBoard').on('click', function() {
+      $('.modal-wrapper-newBoard').toggleClass('open');
+      $('.page-wrapper').toggleClass('body-scroll');
+      // $('.page-wrapper').toggleClass('blur-it');
+      return false;
+   });
 });

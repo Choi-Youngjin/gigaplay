@@ -7,7 +7,7 @@ $(document).ready(function() {
 		 $('#email_errormsg').css('display', 'none');
 		$.ajax({
 	           type:"POST",
-	           url:"play/signup",
+	           url:"/GIGAPlay/play/signup",
 	           data: {
 	        	   	"mid":$('#signup-mid').val(),
 		   		   	"pw":$('#signup-pw').val(),
@@ -59,7 +59,7 @@ $(document).ready(function() {
 		 $('#login_fail').css('display', 'none');
 		$.ajax({
 	           type:"POST",
-	           url:"play/login",
+	           url:"/GIGAPlay/play/login",
 	           data: {
 	        	   	"mid":$('#login-mid').val(),
 		   		   	"pw":$('#login-pw').val(),
@@ -95,7 +95,7 @@ $(document).ready(function() {
 	$(".trigger-logout").click(function() {
 		$.ajax({
 	           type:"POST",
-	           url:"play/logout",
+	           url:"/GIGAPlay/play/logout",
 	           data: {
 	        	   	"session" : "true"
 	           },

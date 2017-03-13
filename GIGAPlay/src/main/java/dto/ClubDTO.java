@@ -13,6 +13,8 @@ public class ClubDTO {
 	private String intro;
 	private String location;
 
+	public ClubDTO(){}
+	
 	public ClubDTO(String cid, String cgroup, String ctype, String name, String category, String category2, int price,
 			int point, String intro, String location) {
 		super();

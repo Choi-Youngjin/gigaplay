@@ -874,11 +874,11 @@
 		}
 
 		table th {
-			color: #fff;
+			color: black;
 			font-size: 0.9em;
 			font-weight: 400;
 			padding: 0 0.75em 0.75em 0.75em;
-			text-align: left;
+			text-align: center;
 		}
 
 		table thead {

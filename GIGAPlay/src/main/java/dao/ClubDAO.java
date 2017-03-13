@@ -99,8 +99,28 @@ public class ClubDAO {
 			return num;
 		}
 		
+		public static ClubDTO getClubByCid(int cid) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			ClubDTO club = null;
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select * from club where cid=?");
+				pstmt.setInt(1, cid);
+				rset = pstmt.executeQuery();
+				if(rset.next()){
+					club = new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), 0, 0, rset.getString(9), rset.getString(10));
+				}
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return club;
+		}
+		
+		
 		// select query 날리는 함수
-		public static ArrayList<ClubDTO> getClub(String ctype, int offset) throws SQLException{
+		public static ArrayList<ClubDTO> getClub(String ctype, int limit, int offset) throws SQLException{
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
@@ -108,13 +128,14 @@ public class ClubDAO {
 
 			try{
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("select * from club where ctype=? limit 9 offset ?");
+				pstmt = con.prepareStatement("select * from club where ctype=? order by cid desc limit ? offset ?");
 				pstmt.setString(1, ctype);
-				pstmt.setInt(2, offset);
+				pstmt.setInt(2,  limit);
+				pstmt.setInt(3, offset);
 				rset = pstmt.executeQuery();
 				list = new ArrayList<ClubDTO>();
 				while(rset.next()){
-					list.add(new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), 0, 0, rset.getString(9), rset.getString(10) ));
+					list.add(new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), 0, 0, rset.getString(9), rset.getString(10)));
 				}
 			}finally{
 				DBUtil.close(con, pstmt, rset);
@@ -129,7 +150,7 @@ public class ClubDAO {
 			ArrayList<ClubDTO> list = null;
 			try{
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("select * from club");
+				pstmt = con.prepareStatement("select * from club order by cid desc");
 				rset = pstmt.executeQuery();
 				
 				list = new ArrayList<ClubDTO>();

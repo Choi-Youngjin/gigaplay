@@ -3,15 +3,19 @@ package controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.ClubDAO;
 import dto.ClubDTO;
+import net.sf.json.JSONObject;
 
 @Controller
 public class PlayController {
@@ -52,7 +56,7 @@ public class PlayController {
 		} else {
 			type = "멘토";
 		}
-		ArrayList<ClubDTO> allPlays = ClubDAO.getClub(type, offset);
+		ArrayList<ClubDTO> allPlays = ClubDAO.getClub(type, 9, offset);
 		int playNum = ClubDAO.getClubNum(type);
 		int temp = playNum/9 + 1;
 		if(playNum%9 == 0) {
@@ -67,10 +71,58 @@ public class PlayController {
 		mv.addObject("endPage", endPage);
 		mv.addObject("startPage", startPage);
 		mv.addObject("totalPage", temp);
-		System.out.println("nowPage: " + nowPage + " , startPage: " + startPage + " , endPage: " + endPage + " , totalPage: " + temp);
+		//System.out.println("nowPage: " + nowPage + " , startPage: " + startPage + " , endPage: " + endPage + " , totalPage: " + temp);
 		return mv;
 	}
 	
+	// 번개 등록!!!!!
+	@SuppressWarnings("null")
+	@RequestMapping(value="tempplay-add", method=RequestMethod.POST) 
+	public @ResponseBody String tempAdd(HttpServletRequest req, HttpServletResponse res, @RequestParam("category1") String category1, @RequestParam("cgroup") String cgroup, ClubDTO newTempClub) throws Exception{
+		JSONObject jsonObj = new JSONObject();
+		
+		if(newTempClub.getName().equals("")) {
+			jsonObj.put("err", "name_null");
+		}
+		else {
+			newTempClub.setCategory(category1);
+			newTempClub.setCgroup(cgroup);
+			newTempClub.setCtype("번개");
+			
+			switch(newTempClub.getCategory()){
+			case "sports":
+				newTempClub.setCategory("스포츠");
+				break;
+			case "art":
+				newTempClub.setCategory("문화/예술");
+				break;
+			case "food":
+				newTempClub.setCategory("요리/음식");
+				break;
+			case "volunteer":
+				newTempClub.setCategory("봉사/나눔");
+				break;
+			default:
+				newTempClub.setCategory("게임/레저");
+				break;
+			}
+			
+			ClubDAO.addClub(newTempClub);
+			jsonObj.put("succ", "clubadd");
+		}
+		return jsonObj.toString();
+	}
+	
+	@RequestMapping(value="clubDetail", method=RequestMethod.GET) 
+	public ModelAndView clubDetail(HttpServletRequest req) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String cid = req.getParameter("cid");
+		ClubDTO club = ClubDAO.getClubByCid(Integer.parseInt(cid));
+		mv.setViewName("clubDetail");
+		mv.addObject("club", club);
+		mv.addObject("tab", "intro");
+		return mv;
+	}
 	@ExceptionHandler(Exception.class)
 	public void exceptionProcess(Exception e){
 		e.printStackTrace();

@@ -31,3 +31,26 @@
 #login_fail {
 	display:none
 }
+#tempplay_name_errormsg {
+	display:none;
+}
+
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: black !important;
+  opacity: 0.5;
+}
+input::-moz-placeholder { /* Firefox 19+ */
+  color: black;
+  opacity: 0.5;
+}
+input:-ms-input-placeholder { /* IE 10+ */
+  color: black;
+  opacity: 0.5;
+}
+input:-moz-placeholder { /* Firefox 18- */
+  color: black;
+  opacity: 0.5;
+}
+.input-class {
+    @include placeholder(#FFFFFF);
+}

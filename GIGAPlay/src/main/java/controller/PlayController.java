@@ -27,6 +27,7 @@ public class PlayController {
 		ModelAndView mv = new ModelAndView();
 		String type = req.getParameter("plays");
 		String p = req.getParameter("pageNo");
+		String category = req.getParameter("category");
 		int startPage = 0;
 		int endPage = 0;
 		int nowPage = 0;
@@ -56,10 +57,20 @@ public class PlayController {
 		} else {
 			type = "멘토";
 		}
-		ArrayList<ClubDTO> allPlays = ClubDAO.getClub(type, 9, offset);
-		int playNum = ClubDAO.getClubNum(type);
+		ArrayList<ClubDTO> allPlays = null;
+		int playNum = 0;
+		// 카테고리 아니고 전체일 경우
+		if(category == null || category.equals("") || category.equals("all")) {
+			allPlays = ClubDAO.getClub(type, 9, offset);
+			playNum = ClubDAO.getClubNum(type);
+		}
+		else {
+			allPlays = ClubDAO.getClubByCategory(type, category, 9, offset);
+			playNum = ClubDAO.getClubNumByCategory(type, category);
+			mv.addObject("category", category);
+		}
 		int temp = playNum/9 + 1;
-		if(playNum%9 == 0) {
+		if(playNum % 9 == 0) {
 			temp--;
 		}
 		if(endPage > temp) {
@@ -71,10 +82,11 @@ public class PlayController {
 		mv.addObject("endPage", endPage);
 		mv.addObject("startPage", startPage);
 		mv.addObject("totalPage", temp);
-		//System.out.println("nowPage: " + nowPage + " , startPage: " + startPage + " , endPage: " + endPage + " , totalPage: " + temp);
+		System.out.println("nowPage: " + nowPage + " , startPage: " + startPage + " , endPage: " + endPage + " , totalPage: " + temp);
 		return mv;
 	}
 	
+
 	// 번개 등록!!!!!
 	@SuppressWarnings("null")
 	@RequestMapping(value="tempplay-add", method=RequestMethod.POST) 

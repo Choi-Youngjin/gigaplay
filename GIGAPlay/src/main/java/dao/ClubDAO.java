@@ -99,6 +99,26 @@ public class ClubDAO {
 			return num;
 		}
 		
+		public static int getClubNumByCategory(String ctype, String category) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			int num = 0;
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select count(*) from club where ctype=? and category=?");
+				pstmt.setString(1, ctype);
+				pstmt.setString(2, category);
+				rset = pstmt.executeQuery();
+				if(rset.next()){
+					num = rset.getInt(1);
+				}
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return num;
+		}
+		
 		public static ClubDTO getClubByCid(int cid) throws SQLException{
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -142,6 +162,31 @@ public class ClubDAO {
 			}
 			return list;
 		}
+		
+		public static ArrayList<ClubDTO> getClubByCategory(String ctype, String category, int limit, int offset) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			ArrayList<ClubDTO> list = null;
+
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select * from club where ctype=? and category=? order by cid desc limit ? offset ?");
+				pstmt.setString(1, ctype);
+				pstmt.setString(2, category);
+				pstmt.setInt(3,  limit);
+				pstmt.setInt(4, offset);
+				rset = pstmt.executeQuery();
+				list = new ArrayList<ClubDTO>();
+				while(rset.next()){
+					list.add(new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), 0, 0, rset.getString(9), rset.getString(10)));
+				}
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return list;
+		}
+		
 		// select query 날리는 함수(모든값 가져옴)
 		public static ArrayList<ClubDTO> getAllClubs() throws SQLException{
 			Connection con = null;

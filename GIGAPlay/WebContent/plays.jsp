@@ -59,22 +59,24 @@
 	</c:if>
 </div>
 
-
 <!-- tab.css 버튼 시작-->
-<div style="width:100%; height:45px; background-color:lightgrey; text-align:center; margin-top:20px;"> 				 		
-	<a href="javascript:;" class="code_view actionBtn7">
+<div style="width:100%; height:45px; background-color:lightgrey; text-align:center; margin-top:20px;">
+	<a onclick="location.href='getAllPlays?plays=${param.plays}'" class="code_view actionBtn7">
+		 <span>모든 동호회</span>
+	</a> 				 		
+	<a onclick="location.href='getAllPlays?category=스포츠&plays=${param.plays}'" class="code_view actionBtn7">
 		 <span>스포츠</span>
 	</a>
-	<a href="javascript:;" class="code_view actionBtn7">
+	<a onclick="location.href='getAllPlays?category=문화/예술&plays=${param.plays}'" class="code_view actionBtn7">
 		 <span>문화/예술</span>
 	</a>
-	<a href="javascript:;" class="code_view actionBtn7">
+	<a onclick="location.href='getAllPlays?category=요리/음식&plays=${param.plays}'"" class="code_view actionBtn7">
 			<span>요리/음식</span>
 	</a>
-	<a href="javascript:;" class="code_view actionBtn7">
+	<a onclick="location.href='getAllPlays?category=봉사/나눔&plays=${param.plays}'"" class="code_view actionBtn7">
 			<span>봉사/나눔</span>
 	</a>
-	<a href="javascript:;" class="code_view actionBtn7">
+	<a onclick="location.href='getAllPlays?category=게임/레저&plays=${param.plays}'"" class="code_view actionBtn7">
 			<span>게임/레저</span>
 	</a>
 </div>			
@@ -91,22 +93,22 @@
 <% }%>
 
 <div id="pager">
-	<a href="getAllPlays?plays=${param.plays }&pageNo=1">[처음]&nbsp;</a>
+	<a href="getAllPlays?plays=${param.plays }&category=${requestScope.category }&pageNo=1">[처음]&nbsp;</a>
 
 	<c:if test="${param.pageNo>5}">
-		<a href="getAllPlays?plays=${param.plays }&pageNo=${startPage - 1}">[이전]&nbsp;</a>
+		<a href="getAllPlays?plays=${param.plays }&category=${requestScope.category }&pageNo=${startPage - 1}">[이전]&nbsp;</a>
 	</c:if>
 
 	<c:forEach var="i" begin="${requestScope.startPage}" end="${requestScope.endPage}">
 		<a class="pageNo <c:if test="${requestScope.nowPage==i}">selected</c:if>"
-			href="getAllPlays?plays=${param.plays }&pageNo=${i}">&nbsp;${i}&nbsp;</a>
+			href="getAllPlays?plays=${param.plays }&category=${requestScope.category }&pageNo=${i}">&nbsp;${i}&nbsp;</a>
 	</c:forEach>
 
 	<c:if test="${((endPage-1)/5) < ((totalPage-1)/5)}">
-		<a href="getAllPlays?plays=${param.plays }&pageNo=${endPage+1}">&nbsp;[다음]</a>
+		<a href="getAllPlays?plays=${param.plays }&category=${requestScope.category }&pageNo=${endPage+1}">&nbsp;[다음]</a>
 	</c:if>
 
-	<a href="getAllPlays?plays=${param.plays }&pageNo=${requestScope.totalPage}">&nbsp;[맨끝]</a>
+	<a href="getAllPlays?plays=${param.plays }&category=${requestScope.category }&pageNo=${requestScope.totalPage}">&nbsp;[맨끝]</a>
 </div>
 
 	<!-- Footer -->

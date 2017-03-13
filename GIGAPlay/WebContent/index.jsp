@@ -50,7 +50,7 @@
 		<div class="thumbnails">
 			<div
                style="width: 100%; height: 25px; border-bottom: 3px solid lightgray; text-align: center;">
-               <a onclick="location.href='plays.jsp?plays=regular'" style="cursor:pointer">
+               <a onclick="location.href='play/getAllPlays?plays=regular'" style="cursor:pointer">
                 <span style="font-family: olleh; color: black; font-size: 30px; background-color: #FFFFFF; padding: 10px;">
                      정기 PLAY </span></a></div>
                       <div style="width: 100%; height: 50px;"></div>
@@ -86,7 +86,7 @@
 			</div>
 			<div
                style="width: 100%; height: 25px; border-bottom: 3px solid lightgray; text-align: center;">
-               <a onclick="location.href='plays.jsp?plays=temp'" style="cursor:pointer">
+               <a onclick="location.href='play/getAllPlays?plays=temp'" style="cursor:pointer">
                 <span style="font-family: olleh; color: black; font-size: 30px; background-color: #FFFFFF; padding: 10px;">
                      번개 PLAY </span></a></div>
                       <div style="width: 100%; height: 50px;"></div>
@@ -117,7 +117,7 @@
 			</div>
 			<div
                style="width: 100%; height: 25px; border-bottom: 3px solid lightgray; text-align: center;">
-               <a onclick="location.href='plays.jsp?plays=edu'" style="cursor:pointer">
+               <a onclick="location.href='play/getAllPlays?plays=edu'" style="cursor:pointer">
                 <span style="font-family: olleh; color: black; font-size: 30px; background-color: #FFFFFF; padding: 10px;">
                      멘토 PLAY </span></a></div>
                       <div style="width: 100%; height: 50px;"></div>

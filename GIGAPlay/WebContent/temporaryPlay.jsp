@@ -15,7 +15,7 @@
 	<div class="temp">
 		<div class="box">
 			<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img
-				src="images/pic04.jpg" alt="" /></a>
+				src="../images/pic04.jpg" alt="" /></a>
 			<div class="inner">
 				<h3>Nascetur nunc varius commodo</h3>
 				<p>Interdum amet accumsan placerat commodo ut amet aliquam
@@ -25,7 +25,7 @@
 		
 		<div class="box">
 			<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img
-				src="images/pic04.jpg" alt="" /></a>
+				src="../images/pic04.jpg" alt="" /></a>
 			<div class="inner">
 				<h3>Nascetur nunc varius commodo</h3>
 				<p>Interdum amet accumsan placerat commodo ut amet aliquam
@@ -35,7 +35,7 @@
 		
 		<div class="box">
 			<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img
-				src="images/pic04.jpg" alt="" /></a>
+				src="../images/pic04.jpg" alt="" /></a>
 			<div class="inner">
 				<h3>Nascetur nunc varius commodo</h3>
 				<p>Interdum amet accumsan placerat commodo ut amet aliquam
@@ -44,7 +44,7 @@
 		</div>
 		<div class="box">
 			<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img
-				src="images/pic04.jpg" alt="" /></a>
+				src="../images/pic04.jpg" alt="" /></a>
 			<div class="inner">
 				<h3>Nascetur nunc varius commodo</h3>
 				<p>Interdum amet accumsan placerat commodo ut amet aliquam
@@ -54,7 +54,7 @@
 		
 		<div class="box">
 			<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img
-				src="images/pic04.jpg" alt="" /></a>
+				src="../images/pic04.jpg" alt="" /></a>
 			<div class="inner">
 				<h3>Nascetur nunc varius commodo</h3>
 				<p>Interdum amet accumsan placerat commodo ut amet aliquam
@@ -64,7 +64,7 @@
 
 		<div class="box">
 			<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img
-				src="images/pic04.jpg" alt="" /></a>
+				src="../images/pic04.jpg" alt="" /></a>
 			<div class="inner">
 				<h3>Nascetur nunc varius commodo</h3>
 				<p>Interdum amet accumsan placerat commodo ut amet aliquam
@@ -74,7 +74,7 @@
 
 		<div class="box">
 			<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img
-				src="images/pic04.jpg" alt="" /></a>
+				src="../images/pic04.jpg" alt="" /></a>
 			<div class="inner">
 				<h3>Nascetur nunc varius commodo</h3>
 				<p>Interdum amet accumsan placerat commodo ut amet aliquam
@@ -84,7 +84,7 @@
 		
 		<div class="box">
 			<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img
-				src="images/pic04.jpg" alt="" /></a>
+				src="../images/pic04.jpg" alt="" /></a>
 			<div class="inner">
 				<h3>Nascetur nunc varius commodo</h3>
 				<p>Interdum amet accumsan placerat commodo ut amet aliquam
@@ -94,7 +94,7 @@
 		
 		<div class="box">
 			<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img
-				src="images/pic04.jpg" alt="" /></a>
+				src="../images/pic04.jpg" alt="" /></a>
 			<div class="inner">
 				<h3>Nascetur nunc varius commodo</h3>
 				<p>Interdum amet accumsan placerat commodo ut amet aliquam
@@ -103,7 +103,7 @@
 		</div>
 		<div class="box">
 			<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img
-				src="images/pic04.jpg" alt="" /></a>
+				src="../images/pic04.jpg" alt="" /></a>
 			<div class="inner">
 				<h3>Nascetur nunc varius commodo</h3>
 				<p>Interdum amet accumsan placerat commodo ut amet aliquam
@@ -112,7 +112,7 @@
 		</div>
 		<div class="box">
 			<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img
-				src="images/pic04.jpg" alt="" /></a>
+				src="../images/pic04.jpg" alt="" /></a>
 			<div class="inner">
 				<h3>Nascetur nunc varius commodo</h3>
 				<p>Interdum amet accumsan placerat commodo ut amet aliquam

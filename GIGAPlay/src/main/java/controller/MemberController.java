@@ -85,7 +85,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="logout", method=RequestMethod.POST) 
-	public @ResponseBody String login(HttpServletRequest req) throws Exception{
+	public @ResponseBody String logout(HttpServletRequest req) throws Exception{
 		JSONObject jsonObj = new JSONObject();
 		HttpSession session = req.getSession();
 		session.invalidate();

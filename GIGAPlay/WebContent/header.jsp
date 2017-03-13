@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%
+	String pathSet = request.getContextPath()+"/";
+%>
 <header class="main_menu_sec navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-4 col-md-2 col-sm-12">
 				<div class="lft_hd">
-					<a href="index.jsp"> <img src="images/ktlogo.png" alt="" /> <font
+					<a href="<%=pathSet %>index.jsp"> <img src="<%=pathSet %>images/ktlogo.png" alt="" /> <font
 						face="olleh" color="black" size="15pt">GIGA PLAY</font>
 					</a>
 				</div>
@@ -20,7 +22,7 @@
 								class="navbar-toggle collapsed" type="button"></button>
 							<div id="navbar">
 								<ul>
-									<li><a class="page-scroll" href="index.jsp"
+									<li><a class="page-scroll" href="<%=pathSet %>index.jsp"
 										style="display: list-item"><font face="olleh"
 											color="black">Home</font></a></li>
 									<c:if test="${!empty sessionScope.session_mid }">

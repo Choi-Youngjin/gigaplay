@@ -48,7 +48,12 @@
 
 	<!-- Boxes -->
 		<div class="thumbnails">
-			<div class="gathering-border"><a onclick="location.href='plays.jsp?plays=regular'">정기 PLAY</a></div>
+			<div
+               style="width: 100%; height: 25px; border-bottom: 3px solid lightgray; text-align: center;">
+               <a onclick="location.href='plays.jsp?plays=regular'" style="cursor:pointer">
+                <span style="font-family: olleh; color: black; font-size: 30px; background-color: #FFFFFF; padding: 10px;">
+                     정기 PLAY </span></a></div>
+                      <div style="width: 100%; height: 50px;"></div>
 			<div class="regular">
 				<div class="box">
 					<div class="poster">
@@ -79,7 +84,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="gathering-border"><a onclick="location.href='plays.jsp?plays=temp'">번개 PLAY</a></div>
+			<div
+               style="width: 100%; height: 25px; border-bottom: 3px solid lightgray; text-align: center;">
+               <a onclick="location.href='plays.jsp?plays=temp'" style="cursor:pointer">
+                <span style="font-family: olleh; color: black; font-size: 30px; background-color: #FFFFFF; padding: 10px;">
+                     번개 PLAY </span></a></div>
+                      <div style="width: 100%; height: 50px;"></div>
 			<div class="temp">
 				<div class="box">
 					<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
@@ -105,7 +115,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="gathering-border"><a onclick="location.href='plays.jsp?plays=edu'">멘토 PLAY</a></div>
+			<div
+               style="width: 100%; height: 25px; border-bottom: 3px solid lightgray; text-align: center;">
+               <a onclick="location.href='plays.jsp?plays=edu'" style="cursor:pointer">
+                <span style="font-family: olleh; color: black; font-size: 30px; background-color: #FFFFFF; padding: 10px;">
+                     멘토 PLAY </span></a></div>
+                      <div style="width: 100%; height: 50px;"></div>
 			<div class="temp">
 				<div class="box">
 					<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img src="images/pic04.jpg" alt="" /></a>

@@ -19,6 +19,25 @@
 <link rel="stylesheet" href="css/giga.css">
 <link rel="stylesheet" href="css/tab.css">
 <link rel="stylesheet" href="css/play.css">
+<style>
+#pager a {
+				text-decoration: none;
+				color: white;
+			}
+			
+			#pager a:hover {
+				color: orange;
+			}
+			
+			#pager a.pageNo {
+				margin-left: 5px;
+				margin-right: 5px;
+			}
+			
+			#pager a.pageNo.selected {
+				color: aqua;
+			}		
+</style>
 </head>
 <body class="page-wrapper">
 <%@ include file="header.jsp" %>
@@ -89,7 +108,33 @@
 	<%@ include file="educationPlay.jsp" %>
 <% }%>
 
+<div id="pager">
+	<a href="plays.jsp?plays=${param.plays }&pageNo=1">[처음]</a>
 
+	<c:if test="${groupNo>1}">
+		<a href="plays.jsp?plays=${param.plays }&pageNo=${startPageNo-pagesPerGroup}">[이전]</a>
+	</c:if>
+
+	<c:forEach var="i" begin="${startPageNo}" end="${endPageNo}">
+		<a class="pageNo <c:if test="${pageNo==i}">selected</c:if>"
+			href="plays.jsp?plays=${param.plays }&pageNo=${i}">${i}</a>
+	</c:forEach>
+
+	<c:if test="${groupNo<totalGroupNo}">
+		<a href="plays.jsp?plays=${param.plays }&pageNo=${endPageNo+1}">[다음]</a>
+	</c:if>
+
+	<a href="plays.jsp?plays=${param.plays }&pageNo=${totalPageNo}">[맨끝]</a>
+</div>
+
+	<!-- Footer -->
+<footer id="footer">
+	<div class="inner">
+		<h2>kt group gathering forum</h2>
+		<p>해당 웹사이트는 kt 그룹인을 위한 동호회 사이트입니다.</p>
+
+	</div>
+</footer>
 
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.scrolly.min.js"></script>

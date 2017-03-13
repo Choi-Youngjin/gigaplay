@@ -22,10 +22,10 @@
    color:    #909;
 }
 .regular {
-	display: flex;
+	display: inline;
 }
 .temp {
-	display: flex;
+	display: inline;
 }
 .gathering-border {
 	-moz-transition:background-color .5s ease;   

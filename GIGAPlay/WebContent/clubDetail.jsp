@@ -24,7 +24,8 @@
 <link rel="stylesheet" href="<%=path %>css/sign.css">
 <link rel="stylesheet" href="<%=path %>css/giga.css">
 <link rel="stylesheet" href="<%=path %>css/tab.css">
-
+<link rel="stylesheet" href="<%=path %>css/board.css">
+<link rel="stylesheet" href="<%=path %>css/play.css">
 <style type="text/css">
 @font-face {
 	font-family: olleh;
@@ -138,12 +139,17 @@ th {
 	%>
 		<div class="clubContents">
 			[${requestScope.club.category }] <font size="5">${requestScope.club.name }</font>
-			<div style="float: right; font-family: olleh">[회장]&nbsp;${requestScope.manager }</div>
+			<div style="float: right; font-family: olleh">
+				<c:if test="${!empty requestScope.manager }">
+					[회장]&nbsp;${requestScope.manager }
+				</c:if>
+			</div>
 		</div>
-		
-		<div id="photoClub">
-			<img src="<%=path %>images/banner.jpg">
-		</div>
+		<c:if test="${param.tab eq 'intro' || param.tab eq null}">
+			<div id="photoClub">
+				<img src="<%=path %>images/banner.jpg">
+				</div>
+		</c:if>
 		<!-- tab.css 버튼 시작-->
 		<div
 			style="width: 100%; height: 60px; text-align: center; margin-top: 30px;">
@@ -159,12 +165,6 @@ th {
 
 		</div>
 		<!-- tab.css 버튼 끝 -->
-
-		<c:if test="${param.tab == 'board' }">
-			<c:if test="${!empty requestScope.isMember }">
-				<%@ include file="board.jsp"%>
-			</c:if>
-		</c:if>
 
 		<!-- 동호회 소개 -->
 		<c:if
@@ -189,7 +189,11 @@ th {
 		
 		
 	</div>
-	
+	<c:if test="${param.tab == 'board' }">
+			<c:if test="${!empty requestScope.isMember }">
+				<%@ include file="board.jsp"%>
+			</c:if>
+		</c:if>
 
 	<footer id="footer">
 	<div class="inner">
@@ -206,6 +210,8 @@ th {
 	<script src="<%=path %>js/util.js"></script>
 	<script src="<%=path %>js/modal.js"></script>
 	<script src="<%=path %>js/sign.js" charset='utf-8'></script>
+	<script src="<%=path %>js/board.js"></script>
+	
 </body>
 
 </html>

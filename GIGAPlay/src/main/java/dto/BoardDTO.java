@@ -2,8 +2,8 @@ package dto;
 
 public class BoardDTO {
 
-	private String bid;
-	private String cid;
+	private int bid;
+	private int cid;
 	private String member;
 	private String title;
 	private String content;
@@ -11,7 +11,9 @@ public class BoardDTO {
 	private int hit;
 	private String date;
 
-	public BoardDTO(String bid, String cid, String member, String title, String content, String category, int hit,
+	public BoardDTO(){}
+	
+	public BoardDTO(int bid, int cid, String member, String title, String content, String category, int hit,
 			String date) {
 		super();
 		this.bid = bid;
@@ -24,19 +26,19 @@ public class BoardDTO {
 		this.date = date;
 	}
 
-	public String getBid() {
+	public int getBid() {
 		return bid;
 	}
 
-	public void setBid(String bid) {
+	public void setBid(int bid) {
 		this.bid = bid;
 	}
 
-	public String getCid() {
+	public int getCid() {
 		return cid;
 	}
 
-	public void setCid(String cid) {
+	public void setCid(int cid) {
 		this.cid = cid;
 	}
 

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import dao.BoardDAO;
 import dao.ClubDAO;
 import dao.MemberDAO;
+import dto.BoardDTO;
 import dto.ClubDTO;
 import dto.MemberDTO;
 import net.sf.json.JSONObject;
@@ -152,6 +154,46 @@ public class PlayController {
 		else if(req.getParameter("tab").equals("board")) {
 			mv.setViewName("clubDetail");
 			mv.addObject("tab", "board");
+			
+			
+			String p = req.getParameter("pageNo");
+			int startPage = 0;
+			int endPage = 0;
+			int nowPage = 0;
+			int offset = 0;
+			if(p == null || p.equals("") || p.equals("0")) {
+				nowPage = 1;
+			}
+			else {
+				nowPage = (Integer.parseInt(p));
+				// 첫페이지가 아닐경우
+				if(!p.equals("1")) {
+					offset = (nowPage - 1) * 10;
+				}
+			}
+			
+			startPage = (nowPage - 1)/5 * 5 + 1;
+			endPage = startPage + 4;
+			
+			int boardNum = 0;
+			ArrayList<BoardDTO> boards = BoardDAO.getAllBoards(cid, offset);
+			mv.addObject("boards", boards);
+			boardNum = BoardDAO.getAllBoardsNum(cid);
+			
+			int temp = boardNum/10 + 1;
+			if(boardNum % 10 == 0) {
+				temp--;
+			}
+			if(endPage > temp) {
+				endPage = temp;
+			}
+			
+			mv.addObject("bNum", boardNum);
+			mv.addObject("nowPage", nowPage);
+			mv.addObject("endPage", endPage);
+			mv.addObject("startPage", startPage);
+			mv.addObject("totalPage", temp);
+			
 		}
 		else if(req.getParameter("tab").equals("list")) {
 			ArrayList<MemberDTO> member = MemberDAO.getAllMemberOfClub(cid);

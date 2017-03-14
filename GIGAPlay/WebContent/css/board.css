@@ -1,0 +1,173 @@
+.clubContents {
+	padding-bottom: 0.3em;
+	border-bottom: solid 3px red;
+	color: black;
+	font-family: olleh;
+}
+
+.clubContents1 {
+	width: 10%;
+	padding-bottom: 0.3em;
+	border-bottom: solid 3px red;
+	color: black;
+	font-family: olleh;
+}
+
+
+/*°Ô½ÃÆÇ css*/
+table.type08 {
+	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+	border-left: 1px solid #ccc;
+	margin: 20px 10px;
+	font-family: olleh;
+	color: black;
+	border-collapse: collapse;
+}
+
+table.type08 thead th {
+	/* 	padding: 10px;
+ */
+	font-weight: bold;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 2px solid #c00;
+	background: lightgrey;
+}
+
+table.type08 tbody th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	background: #ececec;
+}
+
+table.type08 td {
+	width: 350px;
+	padding: 10px;
+	font-size: 0.7em;
+	vertical-align: top;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+table.type11 a {
+	color: black;
+}
+table.type11 a:hover {
+	color: rgba(236, 8, 8, 0.75);
+}
+table.type11 tr {
+}
+table.type11 td.date {
+	font-size: 3px;
+}
+#board_category_errormsg_null {
+	display:none;
+}
+#board_title_errormsg_null {
+	display:none;
+}
+#board_content_errormsg_null {
+	display:none;
+}
+
+#content #header1 {
+	color: black;
+	border-bottom: 1px solid #e9e9e9;
+	background: #f8f8f8;
+}
+#content #header1 #writeSubject {
+	padding: 15px 30px;
+	font-weight: bold;
+	word-break: break-all;
+}
+#content #header2 {
+	color: black;
+	border-bottom: 1px solid #e9e9e9;
+	background: #fff;
+	height: 30px;
+}
+#content #view_nickname {
+	float:left;
+	padding-left: 30px;
+	font-weight: bold;
+	color: black;
+}
+#content #view_hit {
+	color: #bbb;
+	float: right;
+	padding: 0 15px;
+	border-left: 1px solid #e9e9e9;
+}
+#content #view_date {
+	color: black;
+	padding-right: 15px;
+	float: right;
+	
+}
+#content #clear {
+	clear: both;
+}
+#content #view_content {
+	color: black;
+	text-align: justify;
+	z-index: 1;
+	position: relative;
+	padding: 20px 30px;
+	word-break: break-all;	
+	border-bottom: 1px solid #e9e9e9;
+	min-height: 150px;
+	background: #fff;
+}
+
+#buttonbox {
+	height: 30px;
+}
+#boardRead {
+	display: flex;
+}
+#comment_column {
+	width: 30%;
+	min-height: 100px;
+	border: 1px solid #bbb;
+}
+#comment_column #comment_header {
+	width: 100%;
+	padding: 8px 15px;
+	border-bottom: 1px solid #bbb;
+	background: #6F97CA;
+	font-size: 25px;
+}
+.buttonimage {
+	background-repeat: no-repeat; 
+	background-size: 20px; 
+	height: 25px;
+	padding: 5px;
+	display:inline-block;
+	cursor: pointer;
+	margin-top: 5px;
+}
+.buttonimage1 {
+	width: 3%;
+	margin-left: 8px;
+	background-image: url(/GIGAPlay/images/board_back.png);
+}
+.buttonimage2 {
+	width: 6%;
+	float:right;
+	background-image: url(/GIGAPlay/images/board_modify.png);
+}
+.buttonimage3 {
+	width:6%;
+	float:right;
+	background-image: url(/GIGAPlay/images/board_delete.png);
+}
+.noimage {
+	width: 83%;
+	cursor: default;
+}

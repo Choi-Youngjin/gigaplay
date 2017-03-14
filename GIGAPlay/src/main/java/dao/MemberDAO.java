@@ -184,4 +184,23 @@ public class MemberDAO {
 			}
 			return manager;
 		}
+		
+		public static String getNameByMid(String mid) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String name = null;
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select name from member where mid = ?");
+				pstmt.setString(1, mid);
+				rset = pstmt.executeQuery();
+				if(rset.next()){
+					name = rset.getString(1);
+				}
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return name;
+		}
 }

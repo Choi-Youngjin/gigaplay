@@ -17,15 +17,12 @@ public class BoardDAO {
 			PreparedStatement pstmt = null;
 			try{
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("insert into board(bid, cid, member, title, content, category, hit, date) values(?, ?, ?, ?, ?, ?, ?, str_to_date(?, '%Y-%m-%d')");
-				pstmt.setString(1, board.getBid());
-				pstmt.setString(2, board.getCid());
-				pstmt.setString(3, board.getMember());
-				pstmt.setString(4, board.getTitle());
-				pstmt.setString(5, board.getContent());
-				pstmt.setString(6, board.getCategory());
-				pstmt.setInt(7, board.getHit());
-				pstmt.setString(8, board.getDate());
+				pstmt = con.prepareStatement("insert into board(cid, member, title, content, category, hit, date) values(?, ?, ?, ?, ?, 0, now())");
+				pstmt.setInt(1, board.getCid());
+				pstmt.setString(2, board.getMember());
+				pstmt.setString(3, board.getTitle());
+				pstmt.setString(4, board.getContent());
+				pstmt.setString(5, board.getCategory());
     			int result = pstmt.executeUpdate();
 			
 				if(result == 1){
@@ -91,7 +88,7 @@ public class BoardDAO {
 				pstmt.setString(1, bid);
 				rset = pstmt.executeQuery();
 				if(rset.next()){
-					board = new BoardDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), 0, rset.getString(8));
+					board = new BoardDTO(rset.getInt(1), rset.getInt(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), rset.getInt(7), rset.getString(8));
 				}
 			}finally{
 				DBUtil.close(con, pstmt, rset);
@@ -100,23 +97,45 @@ public class BoardDAO {
 		}
 
 		// select query 날리는 함수(모든값 가져옴)
-		public static ArrayList<BoardDTO> getAllBoards() throws SQLException{
+		public static ArrayList<BoardDTO> getAllBoards(int cid, int offset) throws SQLException{
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
 			ArrayList<BoardDTO> list = null;
 			try{
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("select * from board");
+				pstmt = con.prepareStatement("select * from board where cid = ? order by bid desc limit 10 offset ?");
+				pstmt.setInt(1, cid);
+				pstmt.setInt(2, offset);
 				rset = pstmt.executeQuery();
 				
 				list = new ArrayList<BoardDTO>();
 				while(rset.next()){
-					list.add(new BoardDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), null, null, 0, null));
+					list.add(new BoardDTO(rset.getInt(1), rset.getInt(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), rset.getInt(7), rset.getString(8)));
 				}
 			}finally{
 				DBUtil.close(con, pstmt, rset);
 			}
 			return list;
+		}
+		
+		public static int getAllBoardsNum(int cid) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			int num = 0;
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select count(*) from board where cid = ? ");
+				pstmt.setInt(1, cid);
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()){
+					num = rset.getInt(1);
+				}
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return num;
 		}
 }

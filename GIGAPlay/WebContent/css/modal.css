@@ -41,6 +41,10 @@ html, body {
    transition: all 0.25s ease-in-out;
 }
 
+.modal-wrapper-newBoard textarea {
+	color: black;
+}
+
 .modal-wrapper.open, .modal-wrapper-login.open, .modal-wrapper-tempplay.open, .modal-wrapper-eduplay.open, .modal-wrapper-error-nologin.open,
  .modal-wrapper-clubSignup.open, .modal-wrapper-newBoard.open {
   opacity: 1;

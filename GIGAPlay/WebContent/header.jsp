@@ -337,6 +337,7 @@
 														<option value="잡담">잡담</option>
 													</select>
 													<!-- 에러메세지 출력 말머리를 선택해주세요 -->
+													<span id="board_category_errormsg_null" class="errormsg">말머리를 선택해주세요.</span>
 												</p>
 												<p>
 													<font face="olleh" size="4" color="black">제목 *</font> <input
@@ -345,22 +346,21 @@
 														style="color: red; width: 80%; float: right; height: 1.6em; margin-top: 3px">
 													<br>
 													<!-- 에러메세지 출력 말머리를 선택해주세요 -->
-													<!-- <span id="mid_errormsg_null" class="errormsg">사번을
-                              입력해주세요.</span> <span id="mid_errormsg_redun" class="errormsg">이미
-                              가입된 회원입니다.</span> -->
+													<span id="board_title_errormsg_null" class="errormsg">제목을 입력해주세요.</span> 
 												</p>
 												<p>
 													<font face="olleh" size="4" color="black">내용 *</font>
-													<textarea name="content" form="content" cols="40" rows="10"
+													<textarea name="content" id="newBoard-content" form="content" cols="40" rows="10"
 														autofocus required wrap="hard" style="overflow: auto"> </textarea>
 													<br>
 													<!-- 에러메세지 내용을 작성해주세요 -->
-													<!-- <span id="pw_errormsg" class="errormsg">비밀번호을
-                              입력해주세요.</span> -->
+													<span id="board_content_errormsg_null" class="errormsg">내용을 작성해주세요.</span>
 												</p>
 												<p style="width: 100px; margin: 0 auto; margin-top: 15px">
 													<input id="newBoard-btn" type="button" value="등록하기">
 												</p>
+												<input type="hidden" id="newBoard-cid" name="cid" value="${param.cid}"/>
+												<input type="hidden" id="newBoard-member" name="member" value="${sessionScope.session_mid}"/>
 											</form>
 										</div>
 									</div>

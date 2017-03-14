@@ -58,7 +58,7 @@
 
 #gathering-plays {	
 	text-align: center;
-	margin-top: 150px;
+	margin-top: 20px;
 }
 .gathering-border-playpage {
 	-moz-transition:background-color .5s ease;   
@@ -203,6 +203,22 @@
 	-moz-transform: translateY(80%);
 	-ms-transform: translateY(80%);
 	transform: translateY(80%);
+	-webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
+	-moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
+	transition: transform 0.4s, opacity 0.1s 0.3s;
+}
+
+.cs-style-3 figcaption .smaller {
+	opacity:1 !important;
+	height: 200px;
+	width: 100%;
+	top: auto;
+	bottom: 0;
+	opacity: 0;
+	-webkit-transform: translateY(60%);
+	-moz-transform: translateY(60%);
+	-ms-transform: translateY(60%);
+	transform: translateY(60%);
 	-webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
 	-moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
 	transition: transform 0.4s, opacity 0.1s 0.3s;

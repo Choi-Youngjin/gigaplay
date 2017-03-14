@@ -24,6 +24,18 @@
 <body class="page-wrapper">
 <%@ include file="header.jsp" %>
 
+
+<div id="searchwrapper" style="background:url(<%= request.getContextPath() + "/" %>images/searchbox.jpg) no-repeat;">
+		<form action="searchPlays">
+			<input type="text" class="searchbox" name="s" value="" />
+			<input type="image" src="<%= request.getContextPath() + "/" %>images/blank.gif" class="searchbox_submit" value="" />
+			<input type="hidden" name="plays" value="${param.plays }"/>
+			<input type="hidden" name="category" value="${requestScope.category }"/>
+		</form>
+		<c:if test="${!empty requestScope.keyword }">
+			<span id="searchresult">검색 결과: ${requestScope.keyword }</span>
+		</c:if>
+	</div> 
 <!-- Play 공통 -->
 <!-- 선택된 play가 뭔지 -->
 <div id="gathering-plays">
@@ -57,6 +69,7 @@
 			<a onclick="location.href='getAllPlays?plays=edu'">멘토 PLAY</a>
 		</div>
 	</c:if>
+	
 </div>
 
 <!-- tab.css 버튼 시작-->
@@ -81,6 +94,8 @@
 	</a>
 </div>			
 <!-- tab.css 버튼 끝 -->	
+
+
 
 <% if(request.getParameter("plays").equals("regular")) {%> 
 	<%@ include file="regularPlay.jsp" %>

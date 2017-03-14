@@ -57,8 +57,6 @@ public class MemberController {
 	@RequestMapping(value="login", method=RequestMethod.POST) 
 	public @ResponseBody String login(HttpServletRequest req, HttpServletResponse res, MemberDTO newMember) throws Exception{
 		JSONObject jsonObj = new JSONObject();
-		System.out.println(newMember.getMid());
-		System.out.println(newMember.getPw());
 		
 		if(newMember.getMid().equals("")) {
 			System.out.println("사번 입력하지 않음");

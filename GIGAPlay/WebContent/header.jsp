@@ -27,7 +27,7 @@
 										style="display: list-item"><font face="olleh"
 											color="black">Home</font></a></li>
 									<c:if test="${!empty sessionScope.session_mid }">
-										<li><font face="olleh" color="black">${sessionScope.session_name }님
+										<li style="float:right; position:fixed; right:500px; top:40px"><font face="olleh" color="black">${sessionScope.session_name }님
 												환영합니다.</font>
 										<li><a class="btn trigger-logout" href="#"
 											style="border: 0"><font face="olleh" color="black">로그아웃</font></a></li>
@@ -224,6 +224,76 @@
 												<br>
 												<p style="width: 70px; margin: 0 auto; margin-top: -20px;">
 													<input id="tempplay-submit-btn" type="button" value="등록">
+												</p>
+											</form>
+										</div>
+									</div>
+								</div>
+								<!-- 3번 모달-2 / 강좌 등록 창 -->
+								<div class="modal-wrapper-eduplay">
+									<div class="modal">
+										<div class="head">
+											<a class="btn-close trigger-eduplay" href="#">X</a>
+										</div>
+										<div class="content">
+											<h1 style="text-align: center">GIGA PLAY 강좌 등록</h1>
+											<form name="eduplay" method="post">
+												<br>
+												<p>
+													<font face="olleh" size="4" color="black">PLAY명&nbsp;</font>
+													<input id="play-edu-name" type="text" name="mid"
+														style="color: red; width: 50%; display: inline; height: 1.6em; margin-top: 3px">
+													<br> <span id="eduplay_name_errormsg"
+														class="errormsg">PLAY명을 입력해주세요.</span>
+												</p>
+												<p>
+													<font face="olleh" size="4" color="black">분야1&nbsp;&nbsp;</font>
+													<<select name="category" id="play-edu-category1"
+														style="color: red; width: 20%; display: inline; height: 1.6em; margin-top: 3px; margin-right: 10px;">
+														<option value="sports">스포츠</option>
+														<option value="art">문화/예술</option>
+														<option value="food">요리/음식</option>
+														<option value="volunteer">봉사/나눔</option>
+														<option value="game">게임/레저</option>
+													</select> <font face="olleh" size="4" color="black">분야2&nbsp;&nbsp;</font>
+													<input id="play-edu-category2" type="text" name="mid"
+														style="color: red; width: 20%; display: inline; height: 1.6em; margin-top: 3px;">
+												</p>
+												<p>
+													<font face="olleh" size="4" color="black">가격&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+													<input id="play-edu-price" type="text" name="mid"
+														style="color: red; width: 10%; display: inline; height: 1.6em; margin-top: 3px">
+													<font face="olleh" size="4" color="black">원</font> <font
+														face="olleh" size="4" color="black">&nbsp;&nbsp;/&nbsp;그룹&nbsp;&nbsp;</font>
+													<<select name="group" id="play-edu-groups"
+														style="color: red; width: 20%; display: inline; height: 1.6em; margin-top: 3px; margin-right: 10px;">
+														<option value="kt">kt</option>
+														<option value="ktds">kt ds</option>
+														<option value="ktms">kt m&s</option>
+														<option value="kttelecop">kt telecop</option>
+														<option value="kth">kth</option>
+														<option value="ktmhows">kt mhows</option>
+														<option value="nasmedia">nasmedia</option>
+														<option value="ktiscs">kt is/cs</option>
+														<option value="ktsat">kt sat</option>
+														<option value="vp">vp</option>
+														<option value="bccard">bc card</option>
+														<option value="ktskylife">kt skylife</option>
+														<option value="ktestate">kt estate</option>
+														<option value="ktservice">kt service</option>
+													</select>
+												</p>
+												<p>
+													<font face="olleh" size="4" color="black">설명</font>
+													<textarea id="play-edu-intro" rows="6" cols="100"
+														name="mid"
+														style="color: red; display: inline; margin-top: 20px;">
+									        	</textarea>
+												</p>
+
+												<br>
+												<p style="width: 70px; margin: 0 auto; margin-top: -20px;">
+													<input id="eduplay-submit-btn" type="button" value="등록">
 												</p>
 											</form>
 										</div>

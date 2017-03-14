@@ -99,6 +99,26 @@ public class ClubDAO {
 			return num;
 		}
 		
+		public static int searchClubNum(String keyword, String ctype) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			int num = 0;
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select count(*) from club where name like concat('%', ?, '%') and ctype=?");
+				pstmt.setString(1, keyword);
+				pstmt.setString(2, ctype);
+				rset = pstmt.executeQuery();
+				if(rset.next()){
+					num = rset.getInt(1);
+				}
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return num;
+		}
+		
 		public static int getClubNumByCategory(String ctype, String category) throws SQLException{
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -109,6 +129,27 @@ public class ClubDAO {
 				pstmt = con.prepareStatement("select count(*) from club where ctype=? and category=?");
 				pstmt.setString(1, ctype);
 				pstmt.setString(2, category);
+				rset = pstmt.executeQuery();
+				if(rset.next()){
+					num = rset.getInt(1);
+				}
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return num;
+		}
+		
+		public static int searchClubNumByCategory(String keyword, String ctype, String category) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			int num = 0;
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select count(*) from club where name like concat('%', ?, '%') and ctype=? and category=?");
+				pstmt.setString(1, keyword);
+				pstmt.setString(2, ctype);
+				pstmt.setString(3, category);
 				rset = pstmt.executeQuery();
 				if(rset.next()){
 					num = rset.getInt(1);
@@ -138,6 +179,29 @@ public class ClubDAO {
 			return club;
 		}
 		
+		public static boolean isMember(int cid, String mid) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			ClubDTO club = null;
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select count(*) from memberclub where cid=? and mid=?");
+				pstmt.setInt(1, cid);
+				pstmt.setString(2, mid);
+				rset = pstmt.executeQuery();
+				if(rset.next()){
+					if(rset.getInt(1) != 0) {
+						return true;
+					}
+					else return false;
+				}
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return false;
+		}
+		
 		
 		// select query 날리는 함수
 		public static ArrayList<ClubDTO> getClub(String ctype, int limit, int offset) throws SQLException{
@@ -163,6 +227,30 @@ public class ClubDAO {
 			return list;
 		}
 		
+		public static ArrayList<ClubDTO> searchClub(String keyword, String ctype, int limit, int offset) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			ArrayList<ClubDTO> list = null;
+
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select * from club where name like concat('%', ?, '%') and ctype=? order by cid desc limit ? offset ?");
+				pstmt.setString(1, keyword);
+				pstmt.setString(2, ctype);
+				pstmt.setInt(3,  limit);
+				pstmt.setInt(4, offset);
+				rset = pstmt.executeQuery();
+				list = new ArrayList<ClubDTO>();
+				while(rset.next()){
+					list.add(new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), 0, 0, rset.getString(9), rset.getString(10)));
+				}
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return list;
+		}
+		
 		public static ArrayList<ClubDTO> getClubByCategory(String ctype, String category, int limit, int offset) throws SQLException{
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -176,6 +264,31 @@ public class ClubDAO {
 				pstmt.setString(2, category);
 				pstmt.setInt(3,  limit);
 				pstmt.setInt(4, offset);
+				rset = pstmt.executeQuery();
+				list = new ArrayList<ClubDTO>();
+				while(rset.next()){
+					list.add(new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), 0, 0, rset.getString(9), rset.getString(10)));
+				}
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return list;
+		}
+		
+		public static ArrayList<ClubDTO> searchClubByCategory(String keyword, String ctype, String category, int limit, int offset) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			ArrayList<ClubDTO> list = null;
+
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select * from club where name like concat('%', ?, '%') and ctype=? and category=? order by cid desc limit ? offset ?");
+				pstmt.setString(1, keyword);
+				pstmt.setString(2, ctype);
+				pstmt.setString(3, category);
+				pstmt.setInt(4,  limit);
+				pstmt.setInt(5, offset);
 				rset = pstmt.executeQuery();
 				list = new ArrayList<ClubDTO>();
 				while(rset.next()){

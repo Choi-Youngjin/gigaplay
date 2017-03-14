@@ -34,7 +34,9 @@
 #tempplay_name_errormsg {
 	display:none;
 }
-
+#eduplay_name_errormsg {
+	display:none;
+}
 input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: black !important;
   opacity: 0.5;

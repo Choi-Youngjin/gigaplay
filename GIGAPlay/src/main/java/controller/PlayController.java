@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -83,7 +84,6 @@ public class PlayController {
 		mv.addObject("endPage", endPage);
 		mv.addObject("startPage", startPage);
 		mv.addObject("totalPage", temp);
-		System.out.println("nowPage: " + nowPage + " , startPage: " + startPage + " , endPage: " + endPage + " , totalPage: " + temp);
 		return mv;
 	}
 	
@@ -129,12 +129,26 @@ public class PlayController {
 	@RequestMapping(value="clubDetail", method=RequestMethod.GET) 
 	public ModelAndView clubDetail(HttpServletRequest req) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		String cid = req.getParameter("cid");
-		ClubDTO club = ClubDAO.getClubByCid(Integer.parseInt(cid));
+		int cid = Integer.parseInt(req.getParameter("cid"));
+		ClubDTO club = ClubDAO.getClubByCid(cid);
+		String manager = MemberDAO.getManagerOfClub(cid);
 		mv.addObject("club", club);
+		mv.addObject("manager", manager);
+		
+		HttpSession session = req.getSession();
+		String mid = (String) session.getAttribute("session_mid");
+		System.out.println("1 " + mid);
+		if(mid != null) {
+			boolean isMember = ClubDAO.isMember(cid, mid);
+			if(isMember)
+				mv.addObject("isMember", "true");
+			System.out.println(isMember);
+		}
+
 		if(req.getParameter("tab") == null) {
 			mv.setViewName("clubDetail");
 			mv.addObject("tab", "intro");
+			
 			return mv;
 		}
 		else if(req.getParameter("tab").equals("board")) {
@@ -142,9 +156,11 @@ public class PlayController {
 			mv.addObject("tab", "board");
 		}
 		else if(req.getParameter("tab").equals("list")) {
-			ArrayList<MemberDTO> member = MemberDAO.getAllMemberOfClub(Integer.parseInt(cid));
+			ArrayList<MemberDTO> member = MemberDAO.getAllMemberOfClub(cid);
+			ArrayList<String> memberGrade = MemberDAO.getGradeOfMembers(cid);
 			mv.setViewName("clubDetail");
 			mv.addObject("member", member);
+			mv.addObject("memberGrade", memberGrade);
 			mv.addObject("tab", "list");
 		} else {
 			mv.setViewName("clubDetail");
@@ -152,6 +168,72 @@ public class PlayController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(value="searchPlays", method=RequestMethod.GET) 
+	public ModelAndView searchPlays(HttpServletRequest req) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String type = req.getParameter("plays");
+		String p = req.getParameter("pageNo");
+		String category = req.getParameter("category");
+		
+		String keyword = req.getParameter("s");
+		
+		int startPage = 0;
+		int endPage = 0;
+		int nowPage = 0;
+		int offset = 0;
+		if(p == null || p.equals("") || p.equals("0")) {
+			nowPage = 1;
+		}
+		else {
+			nowPage = (Integer.parseInt(p));
+			// 첫페이지가 아닐경우
+			if(!p.equals("1")) {
+				offset = (nowPage - 1) * 9;
+			}
+		}
+		
+		startPage = (nowPage - 1)/5 * 5 + 1;
+		endPage = startPage + 4;
+		
+		mv.setViewName("plays");
+		mv.addObject("plays", req.getParameter(type));
+		if(type.equals("regular")) {
+			type = "정기";
+		} else if(type.equals("temp")) {
+			type = "번개";
+		} else {
+			type = "멘토";
+		}
+		ArrayList<ClubDTO> allPlays = null;
+		int playNum = 0;
+		// 카테고리 아니고 전체일 경우
+		if(category == null || category.equals("") || category.equals("all")) {
+			allPlays = ClubDAO.searchClub(keyword, type, 9, offset);
+			playNum = ClubDAO.searchClubNum(keyword, type);
+		}
+		else {
+			allPlays = ClubDAO.searchClubByCategory(keyword, type, category, 9, offset);
+			playNum = ClubDAO.searchClubNumByCategory(keyword, type, category);
+			mv.addObject("category", category);
+		}
+		int temp = playNum/9 + 1;
+		if(playNum % 9 == 0) {
+			temp--;
+		}
+		if(endPage > temp) {
+			endPage = temp;
+		}
+		mv.addObject("cNum", playNum);
+		mv.addObject("allPlays", allPlays);
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("endPage", endPage);
+		mv.addObject("startPage", startPage);
+		mv.addObject("totalPage", temp);
+		mv.addObject("keyword", keyword);
+		return mv;
+	}
+	
 	@ExceptionHandler(Exception.class)
 	public void exceptionProcess(Exception e){
 		e.printStackTrace();

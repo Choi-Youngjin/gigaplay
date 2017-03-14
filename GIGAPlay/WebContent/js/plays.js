@@ -59,4 +59,37 @@ $("#tempplay-submit-btn").click(function() {
                  alert("번개 등록 에러 발생!!");
            }
 	});
+});	
+	$("#eduplay-submit-btn").click(function() {
+		 $('#edu_name_errormsg').css('display', 'none');
+		$.ajax({
+	           type:"POST",
+	           url:"/GIGAPlay/play/eduplay-add",
+	           data: {
+	        	   	"name":$('#play-edu-name').val(),
+		   		   	"category1":$('#play-edu-category1').val(),
+		   		   	"category2":$('#play-edu-category2').val(),
+		   		   	"cgroup": $('#play-edu-groups').val(),
+		   		   	"price":($('#play-edu-price').val() * 1),
+		   		   	"intro":$('#play-edu-intro').val()
+	           },
+	           datatype:"JSON", 
+	           success : function(data) {
+	                 // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
+	                 // TODO
+	        	   var test = JSON.parse(data);
+	        	   if(test.succ == "clubadd") {
+	        		   $('.modal-wrapper-eduplay').toggleClass('open');
+	        		   $('.page-wrapper').toggleClass('body-scroll')
+	        		   location.reload(true);
+	        		   return false;
+	        	   }
+	        	   if(test.err == "name_null") {
+	        		   $('#eduplay_name_errormsg').css('display', 'inline');
+	        	   }
+	           },
+	           error : function(xhr, status, error) {
+	                 alert("번개 등록 에러 발생!!");
+	           }
+		});
 });

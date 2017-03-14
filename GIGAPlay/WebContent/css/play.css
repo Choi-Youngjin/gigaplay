@@ -96,3 +96,48 @@
 #pager a.pageNo.selected {
 	color: yellow;
 }
+
+
+#searchwrapper {
+width:310px;
+height:40px;
+padding:0px;
+margin:0 auto;
+position:relative;
+margin-top: 120px;
+}
+ 
+#searchwrapper form { display:inline ; }
+ 
+#searchwrapper .searchbox {
+border:0px;
+background-color:transparent;
+position:absolute;
+top:4px;
+left:9px;
+width:256px;
+height:28px;
+font-family:tahoma;font-size:11px;
+color:#fff;
+line-height:28px;
+}
+ 
+.searchbox_submit {
+border:0px;
+background-color:transparent;
+position:absolute;
+top:4px;
+left:265px;
+width:32px;
+height:28px;
+}
+
+#searchresult {
+	float:right;
+	font-family: olleh;
+	font-size: 15px;
+	color: black;
+	position: absolute;
+	top: 20%;
+	right: -90%;
+}

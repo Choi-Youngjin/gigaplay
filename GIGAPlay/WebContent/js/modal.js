@@ -19,6 +19,14 @@ $( document ).ready(function() {
 	   //$('.page-wrapper').toggleClass('blur-it');
 	    return false;
   });
+  
+  $('.trigger-eduplay').on('click', function() {
+	    $('.modal-wrapper-eduplay').toggleClass('open');
+	    $('.page-wrapper').toggleClass('body-scroll')
+	   //$('.page-wrapper').toggleClass('blur-it');
+	    return false;
+});
+  
   $('.trigger-error-nologin').on('click', function() {
 	    $('.modal-wrapper-error-nologin').toggleClass('open');
 	    $('.page-wrapper').toggleClass('body-scroll')

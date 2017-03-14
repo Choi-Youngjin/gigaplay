@@ -18,6 +18,9 @@
 <link rel="stylesheet" href="css/fullmotion-main2.css">
 <link rel="stylesheet" href="css/sign.css">
 <link rel="stylesheet" href="css/giga.css">
+<%
+	String path = request.getContextPath() + "/";
+%>
 
 </head>
 <body class="page-wrapper">
@@ -51,7 +54,7 @@
 		<div class="inner">
 
 			<!-- Boxes -->
-			<div class="thumbnails">
+			<div class="no-touch">
 				<div
 					style="width: 100%; height: 25px; border-bottom: 3px solid lightgray; text-align: center;">
 					<a onclick="location.href='play/getAllPlays?plays=regular'"
@@ -64,16 +67,20 @@
 					<%
 						ArrayList<ClubDTO> regularClubs = ClubDAO.getClub("정기", 3, 0);
 					%>
-					<c:forEach var="item" items="<%=regularClubs %>">
-						<div class="box">
-							<a onclick="location.href='play/clubDetail?cid=${item.cid}'" class="image fit"><img
-								src="<%=pathSet %>/images/pic03.jpg" alt="" /></a>
-							<div class="inner">
-								<h3>[${item.category}]&nbsp;${item.name}</h3>
-								<p>${item.intro}</p>
-							</div>
-						</div>
-					</c:forEach>
+					<ul class="grid cs-style-3" style="padding-bottom: 25px">
+						<c:forEach var="item" items="<%=regularClubs %>">
+							<li>
+								<figure onclick="location.href='play/clubDetail?cid=${item.cid}'"
+									style="cursor: pointer">
+									<img src="<%=path %>images/pic03.jpg" alt="img06">
+									<figcaption class="smaller">
+										<h3>[${item.category}]&nbsp;${item.name}</h3>
+										<span>${item.intro}</span>
+									</figcaption>
+								</figure>
+							</li>
+						</c:forEach>
+					</ul>
 				</div>
 				<div
 					style="width: 100%; height: 25px; border-bottom: 3px solid lightgray; text-align: center;">
@@ -87,16 +94,20 @@
 					<%
 						ArrayList<ClubDTO> tempClubs = ClubDAO.getClub("번개", 3, 0);
 					%>
-					<c:forEach var="item" items="<%=tempClubs %>">
-						<div class="box">
-							<a onclick="location.href='play/clubDetail?cid=${item.cid}'" class="image fit"><img
-								src="<%=pathSet %>/images/pic03.jpg" alt="" /></a>
-							<div class="inner">
-								<h3>[${item.category}]&nbsp;${item.name}</h3>
-								<p>${item.intro}</p>
-							</div>
-						</div>
-					</c:forEach>
+					<ul class="grid cs-style-3" style="padding-bottom: 25px">
+						<c:forEach var="item" items="<%=tempClubs %>">
+							<li>
+								<figure onclick="location.href='play/clubDetail?cid=${item.cid}'"
+									style="cursor: pointer">
+									<img src="<%=path %>images/pic03.jpg" alt="img06">
+									<figcaption>
+										<h3>[${item.category}]&nbsp;${item.name}</h3>
+										<span>${item.intro}</span>
+									</figcaption>
+								</figure>
+							</li>
+						</c:forEach>
+					</ul>
 				</div>
 				<div
 					style="width: 100%; height: 25px; border-bottom: 3px solid lightgray; text-align: center;">
@@ -110,16 +121,20 @@
 					<%
 						ArrayList<ClubDTO> eduClubs = ClubDAO.getClub("멘토", 3, 0);
 					%>
-					<c:forEach var="item" items="<%=eduClubs %>">
-						<div class="box">
-							<a onclick="location.href='play/clubDetail?cid=${item.cid}'" class="image fit"><img
-								src="<%=pathSet %>/images/pic03.jpg" alt="" /></a>
-							<div class="inner">
-								<h3>[${item.category}]&nbsp;${item.name}</h3>
-								<p>${item.intro}</p>
-							</div>
-						</div>
-					</c:forEach>
+					<ul class="grid cs-style-3" style="padding-bottom: 25px">
+						<c:forEach var="item" items="<%=eduClubs %>">
+							<li>
+								<figure onclick="location.href='play/clubDetail?cid=${item.cid}'"
+									style="cursor: pointer">
+									<img src="<%=path %>images/pic03.jpg" alt="img06">
+									<figcaption>
+										<h3>[${item.category}]&nbsp;${item.name}</h3>
+										<span>${item.intro}</span>
+									</figcaption>
+								</figure>
+							</li>
+						</c:forEach>
+					</ul>
 				</div>
 			</div>
 

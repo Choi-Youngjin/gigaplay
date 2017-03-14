@@ -133,17 +133,55 @@ public class MemberDAO {
 			ArrayList<MemberDTO> list = null;
 			try{
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("select m.mid, m.pw, m.name, m.birth, m.groups, m.phone, m.email, m.`point`, m.department from member as m, club as c, memberclub as mc where c.cid=? and m.mid = mc.mid and c.cid = mc.cid");
+				pstmt = con.prepareStatement("select m.mid, m.pw, m.name, m.birth, m.groups, m.phone, m.email, m.`point`, m.department from member as m, club as c, memberclub as mc where c.cid=? and m.mid = mc.mid and c.cid = mc.cid order by (case mc.grade when '회장' THEN 1 when '회원' THEN 2 else 3 END)");
 				pstmt.setInt(1, cid);
 				rset = pstmt.executeQuery();
 				list = new ArrayList<MemberDTO>();
 				while(rset.next()){
 					list.add(new MemberDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), rset.getString(7), 0, null));
 				}
-				System.out.println(list.size());
 			}finally{
 				DBUtil.close(con, pstmt, rset);
 			}
 			return list;
+		}
+		
+		public static ArrayList<String> getGradeOfMembers(int cid) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			ArrayList<String> list = null;
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select mc.grade from member as m, memberclub as mc where m.mid = mc.mid and mc.cid=? order by (case mc.grade when '회장' THEN 1 when '회원' THEN 2 else 3 END);");
+				pstmt.setInt(1, cid);
+				rset = pstmt.executeQuery();
+				list = new ArrayList<String>();
+				while(rset.next()){
+					list.add(rset.getString(1));
+				}
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return list;
+		}
+		
+		public static String getManagerOfClub(int cid) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String manager = null;
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select m.name from member as m, memberclub as mc where mc.cid = ? and mc.grade='회장' and m.mid = mc.mid limit 1");
+				pstmt.setInt(1, cid);
+				rset = pstmt.executeQuery();
+				if(rset.next()){
+					manager = rset.getString(1);
+				}
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return manager;
 		}
 }

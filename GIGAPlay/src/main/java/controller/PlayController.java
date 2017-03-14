@@ -137,12 +137,10 @@ public class PlayController {
 		
 		HttpSession session = req.getSession();
 		String mid = (String) session.getAttribute("session_mid");
-		System.out.println("1 " + mid);
 		if(mid != null) {
 			boolean isMember = ClubDAO.isMember(cid, mid);
 			if(isMember)
 				mv.addObject("isMember", "true");
-			System.out.println(isMember);
 		}
 
 		if(req.getParameter("tab") == null) {

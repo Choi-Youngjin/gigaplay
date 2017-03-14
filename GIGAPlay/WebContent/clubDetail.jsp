@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="dto.ClubDTO" %>
 <%
 	String path = request.getContextPath() + "/";
+	System.out.println(1);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>clubDetail.jsp</title>
+<title>동호회 상세 페이지</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<%=path %>css/normalize.css">
 <link rel="stylesheet" href="<%=path %>css/bootstrap.css">
@@ -27,7 +29,7 @@
 <style type="text/css">
 @font-face {
    font-family: olleh;
-   src: url(etc/olleh.ttf);
+   src: url(../etc/olleh.ttf);
 }
 
 #main2 {
@@ -108,6 +110,13 @@ table {
 th {
    border-bottom: 2px solid red !important;
 }
+#toplays {
+	float:right;
+	height: 30px;
+	background: black;
+	color: white;
+	font-family:olleh;'
+}
 </style>
 </head>
 
@@ -115,80 +124,41 @@ th {
    <%@ include file="header.jsp"%>
 
    <div id="main">
+   	  <% 
+   	  String plays = "regular";
+   	  ClubDTO club = (ClubDTO)request.getAttribute("club");
+		System.out.println(club.getCtype());
+   	  if(club.getCtype().equals("번개")) {
+   		  plays = "temp";
+   	  }
+   	  else if((club.getCtype().equals("멘토"))) {
+   		  plays = "edu";
+   	  }
+	%>
+   	  <div id="toplays" onclick="location.href='getAllPlays?plays=<%=plays%>'">목록으로</div>
       <div id="photoClub">
          <img src="images/ioi.jpg">
       </div>
       <!-- tab.css 버튼 시작-->
       <div
-         style="width: 100%; height: 60px; text-align: center; margin-top: 20px;">
-         <a onclick="location.href='clubDetail?tab=intro&cid=${requestScope.club.cid}'"
-            class="code_view actionBtn7"> <span>동호회 소개</span></a> <a
-            onclick="location.href='clubDetail?tab=board&cid=${requestScope.club.cid}'"
+         style="width: 100%; height: 60px; text-align: center; margin-top: 50px;">
+         <a onclick="location.href='clubDetail?cid=${requestScope.club.cid}'"
+            class="code_view actionBtn7"> <span>동호회 소개</span></a> 
+         <a onclick="location.href='clubDetail?tab=board&cid=${requestScope.club.cid}'"
             class="code_view actionBtn7"> <span>게시판</span></a>
+          <a onclick="location.href='clubDetail?tab=list&cid=${requestScope.club.cid}'"
+            class="code_view actionBtn7"> <span>회원 모두보기</span></a>
+         
+            
       </div>
       <!-- tab.css 버튼 끝 -->
 
       <c:if test="${param.tab == 'board' }">
-         <!-- 동호회 게시판 -->
-         <div id="content">
-            <div class="sector">
-               <div class="sector_content">
-                  <table class="table table-striped">
-                     <tr>
-                        <th style="width: 60px">번호</th>
-                        <th>제목</th>
-                        <th style="width: 100px">글쓴이</th>
-                        <th style="width: 80px">날짜</th>
-                     </tr>
-                     <!-- test용 게시판 리스트 -->
-                     <tr>
-                        <td>번호</td>
-                        <td>제목</td>
-                        <td>글쓴이</td>
-                        <td>날짜</td>
-                     </tr>
-                     <tr>
-                        <td>번호</td>
-                        <td>제목</td>
-                        <td>글쓴이</td>
-                        <td>날짜</td>
-                     </tr>
-                     <tr>
-                        <td>번호</td>
-                        <td>제목</td>
-                        <td>글쓴이</td>
-                        <td>날짜</td>
-                     </tr>
-                     <!-- test용 게시판 리스트 끝 -->
-
-                     <%--                
-                  <c:forEach var="board" items="${list}">
-                     <tr>
-                        <td>${board.bno}번호</td>
-                        <td>${board.btitle}제목</td>
-                        <td>${board.mid} 글쓴이</td>
-                        <td>내용</td>
-                     </tr>
-                  </c:forEach> --%>
-
-                  </table>
-               </div>
-            </div>
-
-            <!-- 게시판 글쓰기 버튼 -->
-            <a class="btn trigger-newBoard" href='#' style="border: 0"><font
-               face="olleh" color="black">글쓰기</font></a>
-
-           
-         </div>
+         <%@ include file="board.jsp" %>
       </c:if>
-      <!-- 동호회 게시판 끝 -->
-
-
-
 
       <!-- 동호회 소개 -->
-      <c:if test="${param.tab == 'intro' || requestScope.tab == 'intro' && param.tab != 'board'}">
+      <c:if test="${param.tab == 'intro' || requestScope.tab == 'intro' && param.tab != 'board' && param.tab != 'memberList'}">
          <div id="content">
             <div class="clubContents">[${requestScope.club.category }] <font size="5">${requestScope.club.name }</font>
             	<div style="float:right; font-family:olleh">[회장] 회장이름db</div>
@@ -205,6 +175,10 @@ th {
 
          </div>
          <!-- 동호회 소개 끝 -->
+      </c:if>
+      
+      <c:if test="${param.tab == 'list' }">
+      	<%@ include file="memberList.jsp" %>
       </c:if>
    </div>
 

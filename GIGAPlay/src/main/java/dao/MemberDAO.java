@@ -125,4 +125,25 @@ public class MemberDAO {
 			}
 			return list;
 		}
+		
+		public static ArrayList<MemberDTO> getAllMemberOfClub(int cid) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			ArrayList<MemberDTO> list = null;
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select m.mid, m.pw, m.name, m.birth, m.groups, m.phone, m.email, m.`point`, m.department from member as m, club as c, memberclub as mc where c.cid=? and m.mid = mc.mid and c.cid = mc.cid");
+				pstmt.setInt(1, cid);
+				rset = pstmt.executeQuery();
+				list = new ArrayList<MemberDTO>();
+				while(rset.next()){
+					list.add(new MemberDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), rset.getString(7), 0, null));
+				}
+				System.out.println(list.size());
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return list;
+		}
 }

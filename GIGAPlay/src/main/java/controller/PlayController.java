@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.ClubDAO;
+import dao.MemberDAO;
 import dto.ClubDTO;
+import dto.MemberDTO;
 import net.sf.json.JSONObject;
 
 @Controller
@@ -32,7 +34,6 @@ public class PlayController {
 		int endPage = 0;
 		int nowPage = 0;
 		int offset = 0;
-		
 		if(p == null || p.equals("") || p.equals("0")) {
 			nowPage = 1;
 		}
@@ -130,9 +131,25 @@ public class PlayController {
 		ModelAndView mv = new ModelAndView();
 		String cid = req.getParameter("cid");
 		ClubDTO club = ClubDAO.getClubByCid(Integer.parseInt(cid));
-		mv.setViewName("clubDetail");
 		mv.addObject("club", club);
-		mv.addObject("tab", "intro");
+		if(req.getParameter("tab") == null) {
+			mv.setViewName("clubDetail");
+			mv.addObject("tab", "intro");
+			return mv;
+		}
+		else if(req.getParameter("tab").equals("board")) {
+			mv.setViewName("clubDetail");
+			mv.addObject("tab", "board");
+		}
+		else if(req.getParameter("tab").equals("list")) {
+			ArrayList<MemberDTO> member = MemberDAO.getAllMemberOfClub(Integer.parseInt(cid));
+			mv.setViewName("clubDetail");
+			mv.addObject("member", member);
+			mv.addObject("tab", "list");
+		} else {
+			mv.setViewName("clubDetail");
+			mv.addObject("tab", "intro");
+		}
 		return mv;
 	}
 	@ExceptionHandler(Exception.class)

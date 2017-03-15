@@ -73,6 +73,7 @@ public class PlayController {
 			playNum = ClubDAO.getClubNumByCategory(type, category);
 			mv.addObject("category", category);
 		}
+		
 		int temp = playNum/9 + 1;
 		if(playNum % 9 == 0) {
 			temp--;
@@ -93,7 +94,7 @@ public class PlayController {
 	// 번개 등록!!!!!
 	@SuppressWarnings("null")
 	@RequestMapping(value="tempplay-add", method=RequestMethod.POST) 
-	public @ResponseBody String tempAdd(HttpServletRequest req, HttpServletResponse res, @RequestParam("category1") String category1, @RequestParam("cgroup") String cgroup, ClubDTO newTempClub) throws Exception{
+	public @ResponseBody String tempAdd(HttpServletRequest req, HttpServletResponse res, @RequestParam("category1") String category1, @RequestParam("mid") String mid, @RequestParam("cgroup") String cgroup, ClubDTO newTempClub) throws Exception{
 		JSONObject jsonObj = new JSONObject();
 		
 		if(newTempClub.getName().equals("")) {
@@ -123,6 +124,8 @@ public class PlayController {
 			}
 			
 			ClubDAO.addClub(newTempClub);
+			int cid = ClubDAO.getLastAddedClub();
+			ClubDAO.addMemberToClub(cid, mid);
 			jsonObj.put("succ", "clubadd");
 		}
 		return jsonObj.toString();

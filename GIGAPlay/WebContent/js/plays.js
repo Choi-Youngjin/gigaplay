@@ -28,7 +28,7 @@ $("#error-btn").click(function() {
 });
 
 $("#tempplay-submit-btn").click(function() {
-	 $('#tempplay_name_errormsg').css('display', 'none');
+	$('#tempplay_name_errormsg').css('display', 'none');
 	$.ajax({
            type:"POST",
            url:"/GIGAPlay/play/tempplay-add",
@@ -38,7 +38,8 @@ $("#tempplay-submit-btn").click(function() {
 	   		   	"category2":$('#play-temp-category2').val(),
 	   		   	"cgroup": $('#play-temp-groups').val(),
 	   		   	"price":($('#play-temp-price').val() * 1),
-	   		   	"intro":$('#play-temp-intro').val()
+	   		   	"intro":$('#play-temp-intro').val(),
+	   		   	"mid": $('#getSessionMid').val()
            },
            datatype:"JSON", 
            success : function(data) {
@@ -71,7 +72,8 @@ $("#tempplay-submit-btn").click(function() {
 		   		   	"category2":$('#play-edu-category2').val(),
 		   		   	"cgroup": $('#play-edu-groups').val(),
 		   		   	"price":($('#play-edu-price').val() * 1),
-		   		   	"intro":$('#play-edu-intro').val()
+		   		   	"intro":$('#play-edu-intro').val(),
+		   		   	"mid": $('#getSessionMid').val()
 	           },
 	           datatype:"JSON", 
 	           success : function(data) {

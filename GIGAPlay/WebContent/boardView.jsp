@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="dao.MemberDAO, dto.BoardDTO" %>
+<%@ page import="dao.MemberDAO, dto.BoardDTO, dto.CommentDTO" %>
 <%
 	String path = request.getContextPath() + "/";
 %>
@@ -36,7 +36,7 @@
 		<div id="boardRead" class="inner">
 			
 			<!-- 게시판 글보기 -->
-			<div id="content" style="width:60%; margin: 0 auto; box-shadow:0 0 3px #bbb;">
+			<div id="content_view" style="width:60%; margin: 0 auto; box-shadow:0 0 3px #bbb;">
 			<% 
 				BoardDTO mem = (BoardDTO)request.getAttribute("board");
 				String name = MemberDAO.getNameByMid(mem.getMember()); 
@@ -58,10 +58,10 @@
 					${requestScope.board.content }
 				</div>
 				<div id="buttonbox">
-					<div class="buttonimage buttonimage1" onclick="history.go(-1)">
+					<div class="buttonimage buttonimage1" onclick="location.href='clubDetail?tab=board&cid=${requestScope.board.cid}'">
 					</div>
 					<div class="buttonimage noimage"></div>
-					<div class="buttonimage buttonimage3" onclick="location.href='boardDelete'">
+					<div class="buttonimage buttonimage3">
 					</div>
 					<div class="buttonimage buttonimage2" onclick="location.href='boardUpdate.jsp'">
 					</div>
@@ -69,9 +69,55 @@
 				</div>
 				
 			</div><!-- content div --><!-- 게시판 글보기 끝 -->
+			<!-- 댓글 창 -->
 			<div id="comment_column">
 				<div id="comment_header">Comment ㅡ</div>
+				<c:forEach items="${requestScope.comments }"  var="item">
+				<% 
+					CommentDTO comm = (CommentDTO)pageContext.getAttribute("item");
+					String commName = MemberDAO.getNameByMid(comm.getMid()); 
+					
+				%>
+					<c:if test="${item.mid == requestScope.board.member }">
+						<div id="comment_container_writer">
+							<input type="hidden" name="comment_id" value="${item.commid }">
+							<c:if test="${item.mid == sessionScope.session_mid }">
+								<span class="comment_delete_button"></span>
+							</c:if>
+							<div id="comment_title">
+								<%=commName %>
+							</div>
+							<div id="comment_content">
+								${item.content }
+							</div>
+						</div>
+						<div id="comment_time_label_writer">${item.date }</div>
+					</c:if>
+					<c:if test="${item.mid != requestScope.board.member }">
+						<div id="comment_container">
+							<input type="hidden" name="comment_id" value="${item.commid }">
+							<c:if test="${item.mid == sessionScope.session_mid }">
+								<span class="comment_delete_button"></span>
+							</c:if>
+							<div id="comment_title">
+								<%=commName %>
+							</div>
+							<div id="comment_content">
+								${item.content }
+							</div>
+						</div>
+						<div id="comment_time_label">${item.date }</div>
+					</c:if>
+					<div style="clear:both"></div>
+				</c:forEach>
+				
+				<div id="comment_write">
+					<span id="comment_write_submit"></span>
+					<textarea id="comment_write_blank"></textarea>
+					<input id="writer" type="hidden" name="login_mid" value="${sessionScope.session_mid }">	
+				</div>
 			</div>
+			<!-- 댓글 종료 -->
 		</div><!-- inner div -->
 	</div><!-- main div -->
 </body>
@@ -91,4 +137,5 @@
 <script src="<%=path %>js/util.js"></script>
 <script src="<%=path %>js/modal.js"></script>
 <script src="<%=path %>js/sign.js" charset='utf-8'></script>
+<script src="<%=path %>js/board.js"></script>
 </html>

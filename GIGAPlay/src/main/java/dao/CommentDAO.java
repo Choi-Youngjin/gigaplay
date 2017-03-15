@@ -17,11 +17,11 @@ public class CommentDAO {
 			PreparedStatement pstmt = null;
 			try{
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("insert into comment(commid, bid, content, date) values(?, ?, ?, str_to_date(?, '%Y-%m-%d'))");
-				pstmt.setString(1, comment.getCommid());
-				pstmt.setString(2, comment.getBid());
-				pstmt.setString(3, comment.getContent());
-				pstmt.setString(4, comment.getDate());
+				pstmt = con.prepareStatement("insert into comment(cid, bid, mid, content, date) values(?, ?, ?, ?, now())");
+				pstmt.setInt(1, comment.getCid());
+				pstmt.setInt(2, comment.getBid());
+				pstmt.setString(3, comment.getMid());
+				pstmt.setString(4, comment.getContent());
 				int result = pstmt.executeUpdate();
 				if(result == 1){
 					return true;
@@ -54,13 +54,13 @@ public class CommentDAO {
 		}
 
 		// delete query 날리는 함수
-		public static boolean deleteComment(String commid) throws SQLException{
+		public static boolean deleteComment(int commid) throws SQLException{
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			try{
 				con = DBUtil.getConnection();
 				pstmt = con.prepareStatement("delete from comment where commid=?");
-				pstmt.setString(1, commid);
+				pstmt.setInt(1, commid);
 				int result = pstmt.executeUpdate();
 				if(result == 1){
 					return true;
@@ -84,7 +84,7 @@ public class CommentDAO {
 				pstmt.setString(1, commid);
 				rset = pstmt.executeQuery();
 				if(rset.next()){
-					comment = new CommentDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4));
+					comment = new CommentDTO(rset.getInt(1), rset.getInt(2), rset.getInt(3), rset.getString(4), rset.getString(5), rset.getString(6));
 				}
 			}finally{
 				DBUtil.close(con, pstmt, rset);
@@ -94,19 +94,21 @@ public class CommentDAO {
 
 		// select query 날리는 함수(모든값 가져옴)
 		//sql - select * from activist
-		public static ArrayList<CommentDTO> getAllComments() throws SQLException{
+		public static ArrayList<CommentDTO> getAllComments(String cid, String bid) throws SQLException{
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
 			ArrayList<CommentDTO> list = null;
 			try{
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("select * from commid");
+				pstmt = con.prepareStatement("select * from comment where cid=? and bid=?");
+				pstmt.setString(1, cid);
+				pstmt.setString(2, bid);
 				rset = pstmt.executeQuery();
 				
 				list = new ArrayList<CommentDTO>();
 				while(rset.next()){
-					list.add(new CommentDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4)));
+					list.add(new CommentDTO(rset.getInt(1), rset.getInt(2), rset.getInt(3), rset.getString(4), rset.getString(5), rset.getString(6)));
 				}
 			}finally{
 				DBUtil.close(con, pstmt, rset);

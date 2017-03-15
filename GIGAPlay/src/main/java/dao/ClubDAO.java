@@ -40,6 +40,47 @@ public class ClubDAO {
 			return false;
 		}
 		
+		public static boolean addMemberToClub(int cid, String mid) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("insert into memberclub(cid, mid, grade) values(?, ?, '회장')");
+				pstmt.setInt(1, cid);
+				pstmt.setString(2, mid);
+
+    			int result = pstmt.executeUpdate();
+			
+				if(result == 1){
+					return true;
+				}
+			}finally{
+				DBUtil.close(con, pstmt);
+			}
+			return false;
+		}
+		
+		// select query 날리는 함수
+					public static int getLastAddedClub() throws SQLException{
+						Connection con = null;
+						PreparedStatement pstmt = null;
+						ResultSet rset = null;
+						int cid = 0;
+
+						try{
+							con = DBUtil.getConnection();
+							pstmt = con.prepareStatement("select cid from club order by cid desc limit 1");
+							rset = pstmt.executeQuery();
+							
+							if(rset.next()){
+								cid = rset.getInt(1);
+							}
+						}finally{
+							DBUtil.close(con, pstmt, rset);
+						}
+						return cid;
+					}
+		
 	       // update query 날리는 함수(category, category2, location변경 쿼리)
 		public static boolean updateClub(String cid, String category, String category2, String location) throws SQLException{
 			Connection con = null;

@@ -24,7 +24,6 @@
 <body class="page-wrapper">
 <%@ include file="header.jsp" %>
 
-
 <div id="searchwrapper" style="background:url(<%= request.getContextPath() + "/" %>images/searchbox.jpg) no-repeat;">
 		<form action="searchPlays">
 			<input type="text" class="searchbox" name="s" value="" />

@@ -58,13 +58,14 @@ public class BoardDAO {
 		}
 
 		// delete query 날리는 함수
-		public static boolean deleteBoard(String bid) throws SQLException{
+		public static boolean deleteBoard(int cid, int bid) throws SQLException{
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			try{
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("delete from board where bid=?");
-				pstmt.setString(1, bid);
+				pstmt = con.prepareStatement("delete from board where cid=? and bid=?");
+				pstmt.setInt(1, cid);
+				pstmt.setInt(2, bid);
 				int result = pstmt.executeUpdate();
 				if(result == 1){
 					return true;
@@ -76,7 +77,7 @@ public class BoardDAO {
 		}
 	
 		// select query 날리는 함수
-		public static BoardDTO getBoard(String bid) throws SQLException{
+		public static BoardDTO getBoard(String cid, String bid) throws SQLException{
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
@@ -84,8 +85,9 @@ public class BoardDAO {
 			
 			try{
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("select * from board where bid=?");
-				pstmt.setString(1, bid);
+				pstmt = con.prepareStatement("select * from board where cid=? and bid=?");
+				pstmt.setString(1, cid);
+				pstmt.setString(2, bid);
 				rset = pstmt.executeQuery();
 				if(rset.next()){
 					board = new BoardDTO(rset.getInt(1), rset.getInt(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), rset.getInt(7), rset.getString(8));

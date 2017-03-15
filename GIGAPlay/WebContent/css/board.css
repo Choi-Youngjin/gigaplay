@@ -76,57 +76,63 @@ table.type11 td.date {
 	display:none;
 }
 
-#content #header1 {
+#content_view {
+	vertical-align: top;
+	position: relative;
+	display: inline-table;
+}
+
+#content_view #header1 {
 	color: black;
 	border-bottom: 1px solid #e9e9e9;
 	background: #f8f8f8;
 }
-#content #header1 #writeSubject {
+#content_view #header1 #writeSubject {
 	padding: 15px 30px;
 	font-weight: bold;
 	word-break: break-all;
 }
-#content #header2 {
+#content_view #header2 {
 	color: black;
 	border-bottom: 1px solid #e9e9e9;
 	background: #fff;
 	height: 30px;
 }
-#content #view_nickname {
+#content_view #view_nickname {
 	float:left;
 	padding-left: 30px;
 	font-weight: bold;
 	color: black;
 }
-#content #view_hit {
+#content_view #view_hit {
 	color: #bbb;
 	float: right;
 	padding: 0 15px;
 	border-left: 1px solid #e9e9e9;
 }
-#content #view_date {
+#content_view #view_date {
 	color: black;
 	padding-right: 15px;
 	float: right;
 	
 }
-#content #clear {
+#content_view #clear {
 	clear: both;
 }
-#content #view_content {
+#content_view #view_content {
 	color: black;
 	text-align: justify;
 	z-index: 1;
 	position: relative;
 	padding: 20px 30px;
 	word-break: break-all;	
-	border-bottom: 1px solid #e9e9e9;
 	min-height: 150px;
 	background: #fff;
+	border-bottom: 1px solid #bbb;
 }
 
 #buttonbox {
-	height: 30px;
+	height: 32px;
 }
 #boardRead {
 	display: flex;
@@ -142,7 +148,7 @@ table.type11 td.date {
 	border-bottom: 1px solid #bbb;
 	background: #6F97CA;
 	font-size: 25px;
-}
+}	
 .buttonimage {
 	background-repeat: no-repeat; 
 	background-size: 20px; 
@@ -170,4 +176,138 @@ table.type11 td.date {
 .noimage {
 	width: 83%;
 	cursor: default;
+}
+
+#comment_container_writer {
+	box-shadow: 0 0 3px #bbb;
+	background: white;
+	word-break: break-all;
+	color: black;
+	border-radius: 10px;
+	width: 70%;
+	float:right;
+	margin: 4px;
+}
+
+#comment_container_writer #comment_title {
+	padding-right: 5px;
+	height: 25px;
+	max-height: 25px;
+	background: #f7f7f7;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom: 1px solid #e9e9e9;
+	text-align: right;
+	font-weight: bold;
+}
+
+#comment_container_writer #comment_content {
+	padding: 5px 10px;
+	text-align: right;
+	background: white;
+	word-break: break-all;
+	overflow-y: hidden;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+#comment_container_writer .comment_delete_button {
+	background-image: url(/GIGAPlay/images/close.png);
+	background-repeat: no-repeat;
+	width:30px;
+	height:30px;
+	background-size: 25px;
+	float: left;
+	cursor: pointer;
+}
+#comment_container .comment_delete_button {
+	background-image: url(/GIGAPlay/images/close.png);
+	background-repeat: no-repeat;
+	width:25px;
+	height:30px;
+	background-size: 25px;
+	float: right;
+	cursor: pointer;
+}
+
+#comment_time_label_writer {
+	background: black;
+	color:white;
+	height:17px;
+	width: 33%;
+	font-size:12px;
+	border-radius: 10px;
+	text-align: right;
+	float:right;
+	padding-right: 5px;
+	margin-right: 5px;
+	margin-bottom: 8px;
+}
+
+#comment_container {
+	box-shadow: 0 0 3px #bbb;
+	background: white;
+	word-break: break-all;
+	color: black;
+	width: 70%;
+	margin: 4px;
+}
+
+#comment_title {
+	padding-left: 5px;
+	height: 25px;
+	max-height: 25px;
+	background: #f7f7f7;
+	font-weight: bold;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+#comment_content {
+	padding: 5px 10px;
+	text-align: justify;
+	background: white;
+	word-break: break-all;
+	overflow-y: hidden;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+#comment_time_label {
+	background: black;
+	color:white;
+	height:17px;
+	width:33%;
+	font-size:12px;
+	border-radius: 10px;
+	padding-left: 5px;
+	margin-left: 5px;
+	margin-bottom: 8px;
+}
+
+#comment_write {
+	margin-top: 20px;
+	color: black;
+	font-size: 15px;
+	display: inline-block;
+	width: 100%;
+	border-top: 1px solid #e9e9e9;
+	text-align: center;
+}
+#comment_write textarea {
+	margin: 3px 0 5px 2px;
+	max-width:88%;
+	max-height: 100px;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+#comment_write_submit {
+	float: right;
+	background-image: url(/GIGAPlay/images/comment_submit.png);
+	background-repeat: no-repeat;
+	background-size: 30px;
+	height: 30px;
+	width:10%;
+	position: relative;
+	top: 30px;
+	cursor: pointer;
 }

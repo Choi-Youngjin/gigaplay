@@ -21,7 +21,7 @@ a:hover {
 text-decoration : none;
 }
 .navbar {
-padding : 10px 0;
+padding : 10px 0 0 0;
 transition : background 0.5s ease-in-out, padding 0.5s ease-in-out;
 }
 .top-nav-collapse {
@@ -105,10 +105,10 @@ position : relative;
 color : #ffffff;
 /*display : block;*/
 font-family : lato;
-font-size : 14px;
+font-size : 16px;
 font-weight : bold;
 line-height : 32px;
-padding : 25px 14px;
+padding : 13px 13px 6px 13px;
 text-decoration : none;
 text-transform : capitalize;
 transition : all 0.4s 0s ease;
@@ -120,7 +120,7 @@ position : relative;
 }
 #nav_menu ul li a:hover {
 transition : all 0.4s 0s ease;
-background : #0078BF;
+background : #8a8a8a;
 }
 #nav_menu ul ul {
 background : none 0 0 repeat scroll #0078bf;
@@ -183,8 +183,8 @@ margin : 0;
 .lft_hd img {
 float : left;
 margin-right : 30px;
-margin-top : 5px;
-width : 76px;
+margin-top : 10px;
+width : 60px;
 }
 #pricing_sec {
 padding : 70px 0;
@@ -463,8 +463,8 @@ position : relative;
 .service_hoverly {
 
 transition: all 1s ease 0s;
-	-moz-transition: all 1s ease 0s;
-	-webkit-transition: all 1s ease 0s;border :1px solid #03B0F0;
+   -moz-transition: all 1s ease 0s;
+   -webkit-transition: all 1s ease 0s;border :1px solid #03B0F0;
 display : none;
 padding : 25px 5px;
 position : absolute;

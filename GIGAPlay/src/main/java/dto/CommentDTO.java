@@ -2,33 +2,54 @@ package dto;
 
 public class CommentDTO {
 
-	private String commid;
-	private String bid;
+	private int commid;
+	private int cid;
+	private int bid;
+	private String mid;
 	private String content;
 	private String date;
 
-	public CommentDTO(String commid, String bid, String content, String date) {
+	public CommentDTO() {}
+
+	public CommentDTO(int commid, int cid, int bid, String mid, String content, String date) {
 		super();
 		this.commid = commid;
+		this.cid = cid;
 		this.bid = bid;
+		this.mid = mid;
 		this.content = content;
 		this.date = date;
 	}
-
-	public String getCommid() {
+	public int getCommid() {
 		return commid;
 	}
 
-	public void setCommid(String commid) {
+	public void setCommid(int commid) {
 		this.commid = commid;
 	}
 
-	public String getBid() {
+	public int getCid() {
+		return cid;
+	}
+
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
+
+	public int getBid() {
 		return bid;
 	}
 
-	public void setBid(String bid) {
+	public void setBid(int bid) {
 		this.bid = bid;
+	}
+
+	public String getMid() {
+		return mid;
+	}
+
+	public void setMid(String mid) {
+		this.mid = mid;
 	}
 
 	public String getContent() {
@@ -46,5 +67,5 @@ public class CommentDTO {
 	public void setDate(String date) {
 		this.date = date;
 	}
-
+	
 }

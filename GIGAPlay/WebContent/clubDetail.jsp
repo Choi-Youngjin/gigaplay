@@ -125,7 +125,6 @@ th {
 
 <body class="page-wrapper">
 	<%@ include file="header.jsp"%>
-
 	<div id="main">
 		<% 
    	  String plays = "regular";

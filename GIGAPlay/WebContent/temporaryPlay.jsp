@@ -26,7 +26,7 @@
 			<c:forEach var="item" items="${requestScope.allPlays }">
 				<li>
 					<figure onclick="location.href='clubDetail?cid=${item.cid}'" style="cursor:pointer">
-						<img src="../images/pic03.jpg" alt="img06">
+						<img src="../images/${item.picture }" alt="image">
 						<figcaption>
 							<h3>[${item.category}]&nbsp;${item.name}</h3>
 							<span>${item.intro}</span>

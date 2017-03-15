@@ -211,7 +211,7 @@ table.type11 td.date {
 	border-bottom-right-radius: 10px;
 }
 #comment_container_writer .comment_delete_button {
-	background-image: url(/GIGAPlay/images/close.png);
+	background-image: url(../images/close.png);
 	background-repeat: no-repeat;
 	width:30px;
 	height:30px;

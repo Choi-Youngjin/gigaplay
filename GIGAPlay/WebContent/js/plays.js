@@ -31,7 +31,7 @@ $("#tempplay-submit-btn").click(function() {
 	$('#tempplay_name_errormsg').css('display', 'none');
 	$.ajax({
            type:"POST",
-           url:"/GIGAPlay/play/tempplay-add",
+           url:"tempplay-add",
            data: {
         	   	"name":$('#play-temp-name').val(),
 	   		   	"category1":$('#play-temp-category1').val(),
@@ -65,7 +65,7 @@ $("#tempplay-submit-btn").click(function() {
 		 $('#edu_name_errormsg').css('display', 'none');
 		$.ajax({
 	           type:"POST",
-	           url:"/GIGAPlay/play/eduplay-add",
+	           url:"eduplay-add",
 	           data: {
 	        	   	"name":$('#play-edu-name').val(),
 		   		   	"category1":$('#play-edu-category1').val(),

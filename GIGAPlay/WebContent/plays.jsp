@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="../css/giga.css">
 <link rel="stylesheet" href="../css/tab.css">
 <link rel="stylesheet" href="../css/play.css">
-
+<link rel="stylesheet" href="../css/mypage.css">
 </head>
 <body class="page-wrapper">
 <%@ include file="header.jsp" %>

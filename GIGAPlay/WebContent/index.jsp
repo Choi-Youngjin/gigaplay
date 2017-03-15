@@ -18,6 +18,8 @@
 <link rel="stylesheet" href="css/fullmotion-main2.css">
 <link rel="stylesheet" href="css/sign.css">
 <link rel="stylesheet" href="css/giga.css">
+<link rel="stylesheet" href="css/mypage.css">
+<script src="js/modernizr.custom.js"></script>
 <%
 	String path = request.getContextPath() + "/";
 %>
@@ -72,7 +74,7 @@
 							<li>
 								<figure onclick="location.href='play/clubDetail?cid=${item.cid}'"
 									style="cursor: pointer">
-									<img src="<%=path %>images/pic03.jpg" alt="img06">
+									<img src="<%=path %>images/${item.picture}" alt="image">
 									<figcaption class="smaller">
 										<h3>[${item.category}]&nbsp;${item.name}</h3>
 										<span>${item.intro}</span>
@@ -99,7 +101,7 @@
 							<li>
 								<figure onclick="location.href='play/clubDetail?cid=${item.cid}'"
 									style="cursor: pointer">
-									<img src="<%=path %>images/pic03.jpg" alt="img06">
+									<img src="<%=path %>images/${item.picture }" alt="image">
 									<figcaption>
 										<h3>[${item.category}]&nbsp;${item.name}</h3>
 										<span>${item.intro}</span>
@@ -126,7 +128,7 @@
 							<li>
 								<figure onclick="location.href='play/clubDetail?cid=${item.cid}'"
 									style="cursor: pointer">
-									<img src="<%=path %>images/pic03.jpg" alt="img06">
+									<img src="<%=path %>images/${item.picture }" alt="img06">
 									<figcaption>
 										<h3>[${item.category}]&nbsp;${item.name}</h3>
 										<span>${item.intro}</span>

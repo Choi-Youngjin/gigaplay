@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="<%=path %>css/tab.css">
 <link rel="stylesheet" href="<%=path %>css/board.css">
 <link rel="stylesheet" href="<%=path %>css/play.css">
+<link rel="stylesheet" href="<%=path %>css/mypage.css">
 <style type="text/css">
 @font-face {
 	font-family: olleh;
@@ -77,7 +78,6 @@ img {
 
 #photoClub {
 	width: 100%;
-	height: 350px;
 	margin-top: 20px;
 }
 
@@ -91,9 +91,10 @@ img {
 #clubIntro {
 	width: 100%;
 	min-height: 200px;
-	background-color: lightgray;
+	background-color: aquamarine;
 	font-family: olleh;
-	color: #FFFFFF;
+	color: black;
+	padding: 30px;
 }
 
 /*동호회 게시판 css*/
@@ -146,7 +147,7 @@ th {
 		</div>
 		<c:if test="${param.tab eq 'intro' || param.tab eq null}">
 			<div id="photoClub">
-				<img src="<%=path %>images/banner.jpg">
+				<img src="<%=path %>images/${requestScope.club.picture}">
 				</div>
 		</c:if>
 		<!-- tab.css 버튼 시작-->

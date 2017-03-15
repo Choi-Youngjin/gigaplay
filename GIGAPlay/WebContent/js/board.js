@@ -4,7 +4,7 @@ $("#newBoard-btn").click(function() {
 	$('#board_content_errormsg_null').css('display', 'none');
 	$.ajax({
 		type : "POST",
-		url : "/GIGAPlay/play/newBoard",
+		url : "newBoard",
 		data : {
 			"category" : $('#newBoard-category').val(),
 			"title" : $('#newBoard-title').val(),
@@ -72,7 +72,7 @@ $('#comment_write_submit').click(function() {
 	$('#comment_content_errormsg_null').css('display', 'none');
 	$.ajax({
 		type : "POST",
-		url : "/GIGAPlay/play/commWrite",
+		url : "commWrite",
 		data : {
 			"cid" : cid,
 			"bid" : bid,
@@ -114,7 +114,7 @@ $(".buttonimage3").click(function() {
 	var bid = $.urlParam('bid');
 	$.ajax({
 		type : "POST",
-		url : "/GIGAPlay/play/boardDelete",
+		url : "boardDelete",
 		data : {
 			"bid" : bid,
 			"cid" : cid
@@ -140,7 +140,7 @@ $('.comment_delete_button').click(function() {
 	var commid =$(this).parent().children('input').val()
 	$.ajax({
 		type : "POST",
-		url : "/GIGAPlay/play/commDelete",
+		url : "commDelete",
 		data : {
 			"commid" : commid
 		},
@@ -165,7 +165,7 @@ $('.comment_delete_button').click(function() {
 $("#applyClub").click(function() {
 		$.ajax({
 	           type:"POST",
-	           url:"/GIGAPlay/play/applyClub",
+	           url:"applyClub",
 	           data: {
 	        	   	"amid": $('#applyClubMid').val(),
 	        	   	"cid" : $('#applyClubCid').val()
@@ -199,7 +199,7 @@ $('#applyok').click(function(data){
 	var amid = $(this).parent().parent().siblings('input').val();
 	$.ajax({
         type:"POST",
-        url:"/GIGAPlay/play/applyOk",
+        url:"applyOk",
         data: {
         	"cid" : cid,
      	   	"amid" : amid
@@ -234,7 +234,7 @@ $('#applyno').click(function(data){
 	console.log(amid);
 	$.ajax({
         type:"POST",
-        url:"/GIGAPlay/play/applyNo",
+        url:"applyNo",
         data: {
      	   	"cid" : cid,
      	   	"amid" : amid

@@ -12,11 +12,12 @@ public class ClubDTO {
 	private int point;
 	private String intro;
 	private String location;
+	private String picture;
 
 	public ClubDTO(){}
 	
 	public ClubDTO(String cid, String cgroup, String ctype, String name, String category, String category2, int price,
-			int point, String intro, String location) {
+			int point, String intro, String location, String picture) {
 		super();
 		this.cid = cid;
 		this.cgroup = cgroup;
@@ -28,6 +29,7 @@ public class ClubDTO {
 		this.point = point;
 		this.intro = intro;
 		this.location = location;
+		this.picture = picture;
 	}
 
 	public String getCid() {
@@ -108,6 +110,14 @@ public class ClubDTO {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 }

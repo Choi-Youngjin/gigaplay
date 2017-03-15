@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,8 +51,16 @@ public class BoardController {
 		ModelAndView mv = new ModelAndView();
 		String bid = req.getParameter("bid");
 		String cid = req.getParameter("cid");
+		HttpSession hitSession = req.getSession();
+		if(hitSession.getAttribute(bid) == null) {
+			hitSession.setAttribute(bid, "true");
+			BoardDAO.updateBoard(bid);
+		}
 		BoardDTO board = BoardDAO.getBoard(cid, bid);
 		ArrayList<CommentDTO> comments = CommentDAO.getAllComments(cid, bid);
+		
+		
+		
 		mv.addObject("board", board);
 		mv.addObject("comments", comments);
 		mv.setViewName("boardView");

@@ -17,6 +17,7 @@ border-radius: 3px;
 </head>
 <input type="hidden" id="getSessionMid" value="${sessionScope.session_mid }">
 <header class="main_menu_sec navbar navbar-default navbar-fixed-top" style="height:100px;">
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-4 col-md-2 col-sm-12">
@@ -38,19 +39,17 @@ border-radius: 3px;
 								<ul>
 									<li><a class="page-scroll" href="<%=pathSet%>index.jsp"
 										style="display: list-item; "> <img
-											src="<%=pathSet%>images/home.png" alt=""  height="40px"
-											; width="40px" />
+											src="<%=pathSet%>images/home.png" alt=""  style="width:40px; height: 40px"/>
 											<div class="iconText">Home</div>
 									</a></li>
 									
 									<c:if test="${!empty sessionScope.session_mid }">
-									<li style="float:right; position:fixed; right:500px; top:40px"><font face="olleh" color="black">${sessionScope.session_name }님
+									<li style="float:right; position:fixed; right:40%; top:40px" class="bt-menu-trigger"><font face="olleh" color="black">${sessionScope.session_name }님
 												환영합니다.</font>
 										</li>
 										<li><a class="btn trigger-logout" href="#"
 											style="border: 0"><img
-												src="<%=pathSet%>images/logout.png" alt="" height="40px"
-												; width="40px" />
+												src="<%=pathSet%>images/logout.png" alt="" style="width:40px; height: 40px" />
                                        <div class="iconText">Log-out</div>
                            </a></li>
 									</c:if>
@@ -58,14 +57,12 @@ border-radius: 3px;
 										test="${empty sessionScope.session_mid }">
                               <li><a class="btn trigger-login "
 											href="#" style="border: 0"><img
-												src="<%=pathSet%>images/login.png" alt="" height="40px"
-												; width="40px" />
+												src="<%=pathSet%>images/login.png" alt="" style="width:40px; height: 40px"/>
                                        <div class="iconText">Log-in</div>
                                        </a></li>
                               <li><a class="btn trigger-signup"
 											href="#" style="border: 0"><img
-												src="<%=pathSet%>images/signup.png" alt="" / height="40px"
-												; width="40px">
+												src="<%=pathSet%>images/signup.png" alt="" style="width:40px; height: 40px">
                                        <div class="iconText">Sign-up</div>
                                        </a></li>
                            </c:if>
@@ -429,5 +426,21 @@ border-radius: 3px;
 				</div>
 			</div>
 		</div>
+		<div id="bt-menu" class="bt-menu">
+			<div id="bt-myinfo" class="bt-div">
+				<div id="bt-myinfo-name">${sessionScope.session_name }</div>
+				<div id="bt-myinfo-mid">사번 ${sessionScope.session_mid }</div>
+			</div>
+			<div id="bt-myclub" class="bt-div">
+			
+			</div>
+			<div id="bt-myboard" class="bt-div">
+			
+			</div>
+		</div>
 	</div>
+	
 </header>
+
+	<script src="<%=pathSet %>js/classie.js"></script>
+	<script src="<%=pathSet %>js/borderMenu.js"></script>

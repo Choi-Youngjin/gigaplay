@@ -35,17 +35,14 @@ public class BoardDAO {
 		}
 		
 	       // update query 날리는 함수(Title, content, category변경 쿼리)
-		public static boolean updateBoard(String bid, String title, String content, String category) throws SQLException{
+		public static boolean updateBoard(String bid) throws SQLException{
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			try{
 				con = DBUtil.getConnection();
 				
-				pstmt = con.prepareStatement("update board set title=?, content=?, category=? where bid=?");
-				pstmt.setString(1, title);
-				pstmt.setString(2, content);
-				pstmt.setString(3, category);
-				pstmt.setString(4, bid);
+				pstmt = con.prepareStatement("update board set hit=hit+1 where bid=?");
+				pstmt.setString(1, bid);
 				
 				int result = pstmt.executeUpdate();
 				if(result == 1){

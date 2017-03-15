@@ -25,9 +25,13 @@
 <link rel="stylesheet" href="<%=path %>css/giga.css">
 <link rel="stylesheet" href="<%=path %>css/tab.css">
 <link rel="stylesheet" href="<%=path %>css/board.css">
+<link rel="stylesheet" href="<%=path %>css/mypage.css">
 </head>
 
 <body class="page-wrapper">
+	<c:if test="${empty sessionScope.session_mid }">
+		<script>location.href="clubDetail?cid="+${param.cid}</script>
+	</c:if>
 	<%@ include file="header.jsp"%>
 
 	<!-- Main -->

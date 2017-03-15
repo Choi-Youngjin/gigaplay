@@ -17,7 +17,9 @@ public class DBUtil {
 	}
 
 	public static Connection getConnection() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://gigaplay.c3xqukejexe9.ap-northeast-2.rds.amazonaws.com:3306/gigaplay?autoReconnect=true&useSSL=false", "root", "root1234");
+		//return DriverManager.getConnection("jdbc:mysql://192.168.0.35:3306/cf_8ca4b924_ba4d_4722_95fb_72ef73e5571e?user=Ab6f0ylaxUlKUvvC&password=UgPrJOJv21USIUwb", "Ab6f0ylaxUlKUvvC", "UgPrJOJv21USIUwb");
+		return DriverManager.getConnection("jdbc:mysql://gigaplay.c3xqukejexe9.ap-northeast-2.rds.amazonaws.com:3306/gigaplay?useSSL=false", "root", "root1234");
+		
 	}
 
 	// DML��

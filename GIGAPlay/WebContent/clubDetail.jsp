@@ -90,7 +90,7 @@ img {
 
 #clubIntro {
 	width: 100%;
-	height: 100px;
+	min-height: 200px;
 	background-color: lightgray;
 	font-family: olleh;
 	color: #FFFFFF;
@@ -160,6 +160,16 @@ th {
 			<a onclick="location.href='clubDetail?tab=list&cid=${requestScope.club.cid}'"
 				class="code_view actionBtn7"> <span>회원 모두보기</span></a>
 			</c:if>
+			<c:if test="${empty requestScope.isMember && !empty sessionScope.session_mid }">
+				<a id="applyClub" class="code_view actionBtn7"> <span>가입신청</span></a> 
+				<input type="hidden" id="applyClubMid" value="${sessionScope.session_mid }">
+				<input type="hidden" id="applyClubCid" value="${requestScope.club.cid }">
+			</c:if>
+			<c:if test="${!empty requestScope.manager }">
+				<c:if test="${requestScope.manager_mid eq sessionScope.session_mid}">
+					<a onclick="location.href='clubDetail?tab=appliedList&cid=${requestScope.club.cid}'" class="code_view actionBtn7"> <span>가입승인</span></a> 
+				</c:if>
+			</c:if>
 
 
 		</div>
@@ -172,8 +182,7 @@ th {
 
 				<div class="clubContents">[동호회 소개]</div>
 				<div id="clubIntro">${requestScope.club.intro }</div>
-				<br> <br> <br> <a class="btn trigger-clubSignup"
-					style="border: 0"><font face="olleh" color="black">가입하기</font></a>
+				<br> <br> <br> 
 				<a class="btn" style="float:right" onclick="location.href='getAllPlays?plays=<%=plays%>'">
 				<font face="olleh" color="black">목록으로</font></a>
 			</div>
@@ -185,7 +194,11 @@ th {
 			<%@ include file="memberList.jsp"%>
 			</c:if>
 		</c:if>
-		
+		<c:if test="${param.tab == 'appliedList' }">
+			<c:if test="${!empty requestScope.isMember && requestScope.manager_mid eq sessionScope.session_mid }">
+				<%@ include file="appliedMemberList.jsp"%>
+			</c:if>
+		</c:if>
 		
 	</div>
 	<c:if test="${param.tab == 'board' }">
@@ -193,6 +206,8 @@ th {
 				<%@ include file="board.jsp"%>
 			</c:if>
 		</c:if>
+		
+		
 
 	<footer id="footer">
 	<div class="inner">

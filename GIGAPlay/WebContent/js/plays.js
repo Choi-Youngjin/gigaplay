@@ -91,7 +91,7 @@ $("#tempplay-submit-btn").click(function() {
 	        	   }
 	           },
 	           error : function(xhr, status, error) {
-	                 alert("번개 등록 에러 발생!!");
+	                 alert("강좌 등록 에러 발생!!");
 	           }
 		});
 });

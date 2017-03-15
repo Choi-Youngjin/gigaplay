@@ -160,3 +160,97 @@ $('.comment_delete_button').click(function() {
 		}
 	});
 })
+
+// 동호회 가입 신청을 했을 때!!!!
+$("#applyClub").click(function() {
+		$.ajax({
+	           type:"POST",
+	           url:"/GIGAPlay/play/applyClub",
+	           data: {
+	        	   	"amid": $('#applyClubMid').val(),
+	        	   	"cid" : $('#applyClubCid').val()
+	           },
+	           datatype:"JSON", 
+	           success : function(data) {
+	                 // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
+	                 // TODO
+	        	   var test = JSON.parse(data);
+	        	   if(test.succ == "apply") {
+	        		  alert("가입 신청 성공!");
+	        	   }
+	           },
+	           error : function(xhr, status, error) {
+	                 alert("가입 신청 실패!! 에러 발생!");
+	           }
+		});
+});
+
+$('#applyok').click(function(data){
+	$.urlParam = function(name){
+	    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	    if (results==null){
+	       return null;
+	    }
+	    else{
+	       return results[1] || 0;
+	    }
+	}
+	var cid = $.urlParam('cid');
+	var amid = $(this).parent().parent().siblings('input').val();
+	$.ajax({
+        type:"POST",
+        url:"/GIGAPlay/play/applyOk",
+        data: {
+        	"cid" : cid,
+     	   	"amid" : amid
+        },
+        datatype:"JSON", 
+        success : function(data) {
+              // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
+              // TODO
+     	   var test = JSON.parse(data);
+     	   if(test.succ == "apply") {
+     		  alert("가입 허가 성공!");
+     		 location.reload(true);
+     	   }
+        },
+        error : function(xhr, status, error) {
+              alert("가입 허가 실패!! 에러 발생!");
+        }
+	});
+});
+$('#applyno').click(function(data){
+	$.urlParam = function(name){
+	    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	    if (results==null){
+	       return null;
+	    }
+	    else{
+	       return results[1] || 0;
+	    }
+	}
+	var cid = $.urlParam('cid');
+	var amid = $(this).parent().parent().siblings('input').val();
+	console.log(amid);
+	$.ajax({
+        type:"POST",
+        url:"/GIGAPlay/play/applyNo",
+        data: {
+     	   	"cid" : cid,
+     	   	"amid" : amid
+        },
+        datatype:"JSON", 
+        success : function(data) {
+              // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
+              // TODO
+     	   var test = JSON.parse(data);
+     	   if(test.succ == "apply") {
+     		  alert("가입 거부 성공!");
+     		  location.reload(true);
+     	   }
+        },
+        error : function(xhr, status, error) {
+              alert("가입 거부 실패!! 에러 발생!");
+        }
+	});
+});

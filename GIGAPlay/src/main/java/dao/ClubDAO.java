@@ -40,15 +40,15 @@ public class ClubDAO {
 			return false;
 		}
 		
-		public static boolean addMemberToClub(int cid, String mid) throws SQLException{
+		public static boolean addMemberToClub(int cid, String mid, String grade) throws SQLException{
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			try{
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("insert into memberclub(cid, mid, grade) values(?, ?, '회장')");
+				pstmt = con.prepareStatement("insert into memberclub(cid, mid, grade) values(?, ?, ?)");
 				pstmt.setInt(1, cid);
 				pstmt.setString(2, mid);
-
+				pstmt.setString(3, grade);
     			int result = pstmt.executeUpdate();
 			
 				if(result == 1){

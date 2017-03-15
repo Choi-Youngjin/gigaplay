@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.BoardDAO;
+import dao.ClubApplyDAO;
 import dao.ClubDAO;
 import dao.MemberDAO;
 import dto.BoardDTO;
@@ -125,11 +126,51 @@ public class PlayController {
 			
 			ClubDAO.addClub(newTempClub);
 			int cid = ClubDAO.getLastAddedClub();
-			ClubDAO.addMemberToClub(cid, mid);
+			ClubDAO.addMemberToClub(cid, mid, "회장");
 			jsonObj.put("succ", "clubadd");
 		}
 		return jsonObj.toString();
 	}
+	
+	// 번개 등록!!!!!
+		@SuppressWarnings("null")
+		@RequestMapping(value="eduplay-add", method=RequestMethod.POST) 
+		public @ResponseBody String eduAdd(HttpServletRequest req, HttpServletResponse res, @RequestParam("category1") String category1, @RequestParam("mid") String mid, @RequestParam("cgroup") String cgroup, ClubDTO newTempClub) throws Exception{
+			JSONObject jsonObj = new JSONObject();
+			
+			if(newTempClub.getName().equals("")) {
+				jsonObj.put("err", "name_null");
+			}
+			else {
+				newTempClub.setCategory(category1);
+				newTempClub.setCgroup(cgroup);
+				newTempClub.setCtype("멘토");
+				
+				switch(newTempClub.getCategory()){
+				case "sports":
+					newTempClub.setCategory("스포츠");
+					break;
+				case "art":
+					newTempClub.setCategory("문화/예술");
+					break;
+				case "food":
+					newTempClub.setCategory("요리/음식");
+					break;
+				case "volunteer":
+					newTempClub.setCategory("봉사/나눔");
+					break;
+				default:
+					newTempClub.setCategory("게임/레저");
+					break;
+				}
+				
+				ClubDAO.addClub(newTempClub);
+				int cid = ClubDAO.getLastAddedClub();
+				ClubDAO.addMemberToClub(cid, mid, "회장");
+				jsonObj.put("succ", "clubadd");
+			}
+			return jsonObj.toString();
+		}
 	
 	@RequestMapping(value="clubDetail", method=RequestMethod.GET) 
 	public ModelAndView clubDetail(HttpServletRequest req) throws Exception{
@@ -137,9 +178,10 @@ public class PlayController {
 		int cid = Integer.parseInt(req.getParameter("cid"));
 		ClubDTO club = ClubDAO.getClubByCid(cid);
 		String manager = MemberDAO.getManagerOfClub(cid);
+		String manager_mid = MemberDAO.getManagerIdOfClub(cid);
 		mv.addObject("club", club);
 		mv.addObject("manager", manager);
-		
+		mv.addObject("manager_mid", manager_mid);
 		HttpSession session = req.getSession();
 		String mid = (String) session.getAttribute("session_mid");
 		if(mid != null) {
@@ -205,6 +247,11 @@ public class PlayController {
 			mv.addObject("member", member);
 			mv.addObject("memberGrade", memberGrade);
 			mv.addObject("tab", "list");
+		} 
+		else if(req.getParameter("tab").equals("appliedList")) {
+			ArrayList<MemberDTO> member = ClubApplyDAO.getAppliedMemberOfClub(cid);
+			mv.addObject("appliedMember", member);
+			mv.addObject("tab", "appliedList");
 		} else {
 			mv.setViewName("clubDetail");
 			mv.addObject("tab", "intro");
@@ -277,6 +324,53 @@ public class PlayController {
 		return mv;
 	}
 	
+		// 가입신청 등록!!!!!
+		@SuppressWarnings("null")
+		@RequestMapping(value="applyClub", method=RequestMethod.POST) 
+		public @ResponseBody String applyClub(@RequestParam("amid") String amid, @RequestParam("cid") String cid) throws Exception{
+			JSONObject jsonObj = new JSONObject();
+			
+			boolean result = ClubApplyDAO.addClubApply(amid, cid);
+			if(result) {
+				jsonObj.put("succ", "apply");
+			}
+			else {
+				jsonObj.put("err", "fail");
+			}
+			return jsonObj.toString();
+		}
+		
+		// 가입신청 허가!!!!!
+		@SuppressWarnings("null")
+		@RequestMapping(value="applyNo", method=RequestMethod.POST) 
+		public @ResponseBody String applyNo(@RequestParam("amid") String amid, @RequestParam("cid") String cid) throws Exception{
+			JSONObject jsonObj = new JSONObject();			
+			boolean result = ClubApplyDAO.applyNo(amid, cid);
+			if(result) {
+				jsonObj.put("succ", "apply");
+			}
+			else {
+				jsonObj.put("err", "fail");
+			}
+			return jsonObj.toString();
+		}
+		
+		// 가입신청 거부!!!!!
+		@SuppressWarnings("null")
+		@RequestMapping(value="applyOk", method=RequestMethod.POST) 
+		public @ResponseBody String applyOk(@RequestParam("amid") String amid, @RequestParam("cid") String cid) throws Exception{
+			JSONObject jsonObj = new JSONObject();			
+			boolean resultDelete = ClubApplyDAO.applyNo(amid, cid);
+			boolean resultInsert = ClubDAO.addMemberToClub(Integer.parseInt(cid), amid, "회원");
+			if(resultDelete && resultInsert) {
+				jsonObj.put("succ", "apply");
+			}
+			else {
+				jsonObj.put("err", "fail");
+			}
+			return jsonObj.toString();
+		}
+		
 	@ExceptionHandler(Exception.class)
 	public void exceptionProcess(Exception e){
 		e.printStackTrace();

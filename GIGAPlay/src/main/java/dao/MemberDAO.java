@@ -146,6 +146,7 @@ public class MemberDAO {
 			return list;
 		}
 		
+		
 		public static ArrayList<String> getGradeOfMembers(int cid) throws SQLException{
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -174,6 +175,25 @@ public class MemberDAO {
 			try{
 				con = DBUtil.getConnection();
 				pstmt = con.prepareStatement("select m.name from member as m, memberclub as mc where mc.cid = ? and mc.grade='회장' and m.mid = mc.mid limit 1");
+				pstmt.setInt(1, cid);
+				rset = pstmt.executeQuery();
+				if(rset.next()){
+					manager = rset.getString(1);
+				}
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return manager;
+		}
+		
+		public static String getManagerIdOfClub(int cid) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String manager = null;
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select m.mid from member as m, memberclub as mc where mc.cid = ? and mc.grade='회장' and m.mid = mc.mid limit 1");
 				pstmt.setInt(1, cid);
 				rset = pstmt.executeQuery();
 				if(rset.next()){

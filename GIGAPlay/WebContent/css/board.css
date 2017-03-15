@@ -311,3 +311,19 @@ table.type11 td.date {
 	top: 30px;
 	cursor: pointer;
 }
+#applyok {
+	display: inline-block;
+	background-image: url(/GIGAPlay/images/applyok.png);
+	background-repeat: no-repeat;
+	background-size: 25px;
+	height: 25px;
+	width: 25px;
+}
+#applyno {
+	display: inline-block;
+	background-image: url(/GIGAPlay/images/applyno.png);
+	background-repeat: no-repeat;
+	background-size: 25px;
+	height: 25px;
+	width: 25px;
+}

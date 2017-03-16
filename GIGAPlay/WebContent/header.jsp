@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="dto.ClubDTO, dto.MemberDTO, dto.BoardDTO"%>
+<%@ page import="dao.MemberDAO, dao.ClubDAO, dao.BoardDAO, java.util.ArrayList"%>
+
 <%
 	String pathSet = request.getContextPath() + "/";
 %>
@@ -243,7 +247,7 @@ border-radius: 3px;
 												</p>
 												<p>
 													<font face="olleh" size="4" color="black">설명</font>
-													<textarea id="play-temp-intro" rows="6" cols="100"
+													<textarea id="play-temp-intro" class="textarea-br" rows="6" cols="100"
 																	name="mid"
 																	style="color: red; display: inline; margin-top: 20px;">
 									        	</textarea>
@@ -312,7 +316,7 @@ border-radius: 3px;
 												</p>
 												<p>
 													<font face="olleh" size="4" color="black">설명</font>
-													<textarea id="play-edu-intro" rows="6" cols="100"
+													<textarea id="play-edu-intro" class="textarea-br" rows="6" cols="100"
 																	name="mid"
 																	style="color: red; display: inline; margin-top: 20px;">
 									        	</textarea>
@@ -377,7 +381,7 @@ border-radius: 3px;
 												</p>
 												<p>
 													<font face="olleh" size="4" color="black">내용 *</font>
-													<textarea name="content" id="newBoard-content"
+													<textarea name="content" id="newBoard-content" class="textarea-br"
 																	form="content" cols="40" rows="10" autofocus required
 																	wrap="hard" style="overflow: auto"> </textarea>
 													<br>
@@ -395,52 +399,81 @@ border-radius: 3px;
 										</div>
 									</div>
 								</div>
-								<!-- 동호회 가입버튼 Modal 시작-->
-								<div class="modal-wrapper-clubSignup">
-									<div class="modal">
-										<div class="head">
-											<a class="btn-close trigger-clubSignup" href='#'>X</a>
-										</div>
-										<div class="content">
-											<h1 style="text-align: center">동호회 가입</h1>
-											<form action="clubSignup" method="post">
-												<br>
-												<p style="width: 300px; margin: 0 auto; margin-top: 15px">
-													<font face="olleh" size="4" color="black">** 동호회에
-														가입하시겠습니까? ^.^</font>
-												</p>
-												<p style="width: 300px; margin: 0 auto; margin-top: 90px">
-													<input id="clubSignup-btn" type="button" value="가입하기">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<input id="clubSignupCancel-btn" class="trigger-clubSignup"
-																	type="button" value="취소하기" onclick="">
-												</p>
-											</form>
-										</div>
-									</div>
-								</div>
-								<!-- 동호회 가입버튼 Modal 끝-->
-							
-										</div>
+							</div>
 						</nav>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- 1. 로그인 정보 세션으로 MemberDTO 얻어오기
+			  2. 로그인 정보 세션으로 memberclub 테이블에서 
+			     가입한 동호회 cid를 얻어 join으로 동호회 이름 가져오기
+			     (cid는 링크거는데 이용) - Scroll 달기
+			  3. mid와 cid를 이용해 [동호회 이름] 게시글 이름 얻어오기
+		 -->
+		<%
+			String mGroups = null;
+			String mEmail = null;
+			String mPhone = null;
+			ArrayList<ClubDTO> mClubs = null;
+			ArrayList<BoardDTO> mBoards = null;
+			if(request.getSession().getAttribute("session_mid") != null) {
+				MemberDTO member = MemberDAO.getMembers((String)request.getSession().getAttribute("session_mid"));
+				mGroups = member.getGroups();
+				mEmail = member.getEmail();
+				mPhone = member.getPhone();
+				mClubs = new ArrayList<ClubDTO>();
+				mBoards = new ArrayList<BoardDTO>();
+				mClubs = ClubDAO.getClubName((String)request.getSession().getAttribute("session_mid"));
+				mBoards = BoardDAO.getBoardsByMid((String)request.getSession().getAttribute("session_mid"));
+			}
+			
+		%>
+		
 		<div id="bt-menu" class="bt-menu">
 			<div id="bt-myinfo" class="bt-div">
-				<div id="bt-myinfo-name">${sessionScope.session_name }</div>
-				<div id="bt-myinfo-mid">사번 ${sessionScope.session_mid }</div>
+				<div id="bt-myinfo-name">${sessionScope.session_name }
+					<div id="bt-myinfo-group"><%=mGroups %> </div>
+				</div>
+				<br><br><br>
+				<div id="bt-myinfo-mid">
+					<div id="bt-myinfo-mid-image"></div>
+					&nbsp;&nbsp;${sessionScope.session_mid }
+				</div>
+				
+				<div id="bt-myinfo-email">
+					<div id="bt-myinfo-email-image"></div>
+					&nbsp;&nbsp;<%=mEmail %>
+				</div>
+				<div id="bt-myinfo-tel">
+					<div id="bt-myinfo-tel-image"></div>	
+					&nbsp;&nbsp;<%=mPhone %>
+				</div>
 			</div>
 			<div id="bt-myclub" class="bt-div">
-			
+				<div id="bt-myclub-header">나의 플레이</div>
+				<div id="bt-myclub-container">
+					<ul>
+					<c:forEach items="<%=mClubs %>" var="clubs">
+						<li class="bt-myclub-clubs"><a onclick="location.href='<%=pathSet%>play/clubDetail?cid=${clubs.cid}'">[${clubs.ctype}]&nbsp;&nbsp;${clubs.name }</a></li>
+					</c:forEach>
+					</ul>
+				</div>
 			</div>
 			<div id="bt-myboard" class="bt-div">
-			
+				<div id="bt-myboard-header">나의 최근 게시글 TOP 5</div>
+				<div id="bt-myboard-container">
+					<ul>
+					<c:forEach items="<%=mBoards %>" var="boards">
+						<li class="bt-myclub-clubs"><a onclick="location.href='<%=pathSet%>play/boardView?cid=${boards.cid}&bid=${boards.bid }'">${boards.title }</a></li>
+					</c:forEach>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
 	
 </header>
 
-	<script src="<%=pathSet %>js/classie.js"></script>
-	<script src="<%=pathSet %>js/borderMenu.js"></script>
+<script src="<%=pathSet %>js/classie.js"></script>
+<script src="<%=pathSet %>js/borderMenu.js"></script>

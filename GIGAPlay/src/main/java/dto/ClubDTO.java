@@ -16,6 +16,13 @@ public class ClubDTO {
 
 	public ClubDTO(){}
 	
+	public ClubDTO(String cid, String ctype, String name) {
+		super();
+		this.cid = cid;
+		this.ctype = ctype;
+		this.name = name;
+	}
+	
 	public ClubDTO(String cid, String cgroup, String ctype, String name, String category, String category2, int price,
 			int point, String intro, String location, String picture) {
 		super();

@@ -6,7 +6,7 @@
 	height: 0;
 	border-width: 0px;
 	border-style: solid;
-	border-color: rgba(239,28,22, 0.9);
+	border-color: rgba(15,15,15, 0.8);
 	-webkit-backface-visibility: hidden;
 	-webkit-transition: border-width 0.3s, background-color 0.3s, height 0s 0.3s;
 	transition: border-width 0.3s, background-color 0.3s, height 0s 0.3s;
@@ -192,10 +192,10 @@
 }
 
 .bt-menu-open .bt-div:nth-of-type(1) {
-	background: white;
+	/* background: white; */
 	display:inline-block;
 	position:absolute;
-	top: -350px;
+	top: -380px;
 	width: 25%;
 	height: 300px;
 	padding: 3%;
@@ -203,10 +203,10 @@
 }
 
 .bt-menu-open .bt-div:nth-of-type(2) {
-	background: white;
+	/* background: white; */
 	display:inline-block;
 	position:absolute;
-	top: -350px;
+	top: -380px;
 	width: 25%;
 	height: 300px;
 	padding: 3%;
@@ -214,26 +214,143 @@
 }
 
 .bt-menu-open .bt-div:nth-of-type(3) {
-	background: white;
+	/* background: white; */
 	display:inline-block;
 	position:absolute;
-	top: -350px;
+	top: -380px;
 	width: 25%;
 	height: 300px;
 	padding: 3%;
 	left: 70%;
 }
 
-#bt-myinfo-name, #bt-myinfo-mid {
+#bt-myinfo-name, #bt-myinfo-mid, #bt-myinfo-group, #bt-myinfo-email,
+#bt-myinfo-tel {
 	display:none;
 }
 .bt-menu.bt-menu-open #bt-myinfo-name {
 	display:block;
-	color: black;
+	color: white;
 	font-weight: bold;
 	font-size: 20px;
 }
 .bt-menu.bt-menu-open #bt-myinfo-mid {
 	display:block;
-	color: black;
+	color: white;
+	font-size:15px;
+}
+
+.bt-menu.bt-menu-open #bt-myinfo-name #bt-myinfo-group {
+	display:block;
+	color: white;
+}
+
+.bt-menu.bt-menu-open #bt-myinfo-email {
+	display:block;
+	color: white;
+	font-size:15px;
+}
+
+.bt-menu.bt-menu-open #bt-myinfo-tel {
+	display:block;
+	color: white;
+	font-size:15px;
+}
+
+#bt-myinfo-mid-image {
+	background-image: url(/GIGAPlay/images/mypage_mid.png);
+	background-size: 25px;
+	background-repeat: no-repeat;
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+}
+#bt-myinfo-email-image {
+	background-image: url(/GIGAPlay/images/mypage_email.png);
+	background-size: 25px;
+	background-repeat: no-repeat;
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+}
+#bt-myinfo-tel-image {
+	background-image: url(/GIGAPlay/images/mypage_phone.png);
+	background-size: 25px;
+	background-repeat: no-repeat;
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+}
+
+
+#bt-myclub-header, #bt-myclub-container {
+	display:none;
+}
+
+.bt-menu.bt-menu-open #bt-myclub-header {
+	display:block;
+	color: white;
+	font-size:20px;
+	font-weight: bold;
+	padding-bottom: 2px;
+	border-bottom: 2px solid #bbb;
+}
+
+.bt-menu.bt-menu-open #bt-myclub-content::-webkit-scrollbar {
+    width: 12px;
+	}
+
+.bt-menu.bt-menu-open #bt-myclub-content::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+
+.bt-menu.bt-menu-open #bt-myclub-content::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+.bt-menu.bt-menu-open #bt-myclub-container {
+	display:block;
+	color: white;
+	font-size:15px;
+	overflow-y: scroll;
+	height: 180px;
+	margin-top:30px;
+}
+
+.bt-menu.bt-menu-open #bt-myclub-container li {
+	list-style: none;
+	padding-left: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	height: 40px;
+}
+
+#bt-myboard-header, #bt-myboard-container {
+	display:none;
+}
+
+.bt-menu.bt-menu-open #bt-myboard-header {
+	display:block;
+	color: white;
+	font-size:20px;
+	font-weight: bold;
+	padding-bottom: 2px;
+	border-bottom: 2px solid #bbb;
+}
+.bt-menu.bt-menu-open #bt-myboard-container {
+	display:block;
+	color: white;
+	font-size:15px;
+	height: 180px;
+	margin-top:30px;	
+}
+
+
+.bt-menu.bt-menu-open #bt-myboard-container li {
+	list-style: none;
+	padding-left: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	height: 35px;
 }

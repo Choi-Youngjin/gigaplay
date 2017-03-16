@@ -212,7 +212,7 @@ public class ClubDAO {
 				pstmt.setInt(1, cid);
 				rset = pstmt.executeQuery();
 				if(rset.next()){
-					club = new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), 0, 0, rset.getString(9), rset.getString(10), rset.getString(11));
+					club = new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), rset.getInt(7), 0, rset.getString(9), rset.getString(10), rset.getString(11));
 				}
 			}finally{
 				DBUtil.close(con, pstmt, rset);
@@ -260,7 +260,7 @@ public class ClubDAO {
 				rset = pstmt.executeQuery();
 				list = new ArrayList<ClubDTO>();
 				while(rset.next()){
-					list.add(new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), 0, 0, rset.getString(9), rset.getString(10), rset.getString(11)));
+					list.add(new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), rset.getInt(7), 0, rset.getString(9), rset.getString(10), rset.getString(11)));
 				}
 			}finally{
 				DBUtil.close(con, pstmt, rset);
@@ -284,7 +284,7 @@ public class ClubDAO {
 				rset = pstmt.executeQuery();
 				list = new ArrayList<ClubDTO>();
 				while(rset.next()){
-					list.add(new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), 0, 0, rset.getString(9), rset.getString(10), rset.getString(11)));
+					list.add(new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), rset.getInt(7), 0, rset.getString(9), rset.getString(10), rset.getString(11)));
 				}
 			}finally{
 				DBUtil.close(con, pstmt, rset);
@@ -308,7 +308,7 @@ public class ClubDAO {
 				rset = pstmt.executeQuery();
 				list = new ArrayList<ClubDTO>();
 				while(rset.next()){
-					list.add(new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), 0, 0, rset.getString(9), rset.getString(10), rset.getString(11)));
+					list.add(new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), rset.getInt(7), 0, rset.getString(9), rset.getString(10), rset.getString(11)));
 				}
 			}finally{
 				DBUtil.close(con, pstmt, rset);
@@ -333,7 +333,7 @@ public class ClubDAO {
 				rset = pstmt.executeQuery();
 				list = new ArrayList<ClubDTO>();
 				while(rset.next()){
-					list.add(new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), 0, 0, rset.getString(9), rset.getString(10), rset.getString(11)));
+					list.add(new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), rset.getInt(7), 0, rset.getString(9), rset.getString(10), rset.getString(11)));
 				}
 			}finally{
 				DBUtil.close(con, pstmt, rset);
@@ -354,11 +354,34 @@ public class ClubDAO {
 				
 				list = new ArrayList<ClubDTO>();
 				while(rset.next()){
-					list.add(new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), 0, 0, rset.getString(9), rset.getString(10), rset.getString(11)));
+					list.add(new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), rset.getInt(7), 0, rset.getString(9), rset.getString(10), rset.getString(11)));
 				}
 			}finally{
 				DBUtil.close(con, pstmt, rset);
 			}
 			return list;
 		}
+		
+		// select query 날리는 함수
+		public static ArrayList<ClubDTO> getClubName(String mid) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			ArrayList<ClubDTO> list = null;
+
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select c.cid, c.cgroup, c.ctype, c.name, c.category, c.category2, c.price, c.`point`, c.intro, c.location, c.picture from memberclub as mc, club as c where mc.mid=? and mc.cid = c.cid");
+				pstmt.setString(1, mid);
+				rset = pstmt.executeQuery();
+				list = new ArrayList<ClubDTO>();
+				while(rset.next()){
+					list.add(new ClubDTO(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), rset.getInt(7), 0, rset.getString(9), rset.getString(10), rset.getString(11)));
+				}
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return list;
+		}
+				
 }

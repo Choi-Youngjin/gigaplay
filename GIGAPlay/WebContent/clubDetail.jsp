@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="dto.ClubDTO"%>
 <%
 	String path = request.getContextPath() + "/";
@@ -180,9 +181,12 @@ th {
 		<c:if
 			test="${param.tab == 'intro' || requestScope.tab == 'intro' && param.tab != 'board' && param.tab != 'memberList'}">
 			<div id="content">
-
+				<% pageContext.setAttribute("crlf", "\r\n");
+               pageContext.setAttribute("cr", "\r");
+               pageContext.setAttribute("lf", "\n");
+               %>
 				<div class="clubContents">[동호회 소개]</div>
-				<div id="clubIntro">${requestScope.club.intro }</div>
+				<div id="clubIntro"> ${fn:replace(requestScope.club.intro, lf, "<br>") }</div>
 				<br> <br> <br> 
 				<a class="btn" style="float:right" onclick="location.href='getAllPlays?plays=<%=plays%>'">
 				<font face="olleh" color="black">목록으로</font></a>

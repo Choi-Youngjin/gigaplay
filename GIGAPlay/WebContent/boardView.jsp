@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <%@ page import="dao.MemberDAO, dto.BoardDTO, dto.CommentDTO" %>
+
 <%
 	String path = request.getContextPath() + "/";
 %>
@@ -59,7 +61,11 @@
 				</div>
 				
 				<div id="view_content">
-					${requestScope.board.content }
+					<% pageContext.setAttribute("crlf", "\r\n");
+					pageContext.setAttribute("cr", "\r");
+					pageContext.setAttribute("lf", "\n");
+					%>
+					${fn:replace(requestScope.board.content, lf, "<br>") }
 				</div>
 				<div id="buttonbox">
 					<div class="buttonimage buttonimage1" onclick="location.href='clubDetail?tab=board&cid=${requestScope.board.cid}'">

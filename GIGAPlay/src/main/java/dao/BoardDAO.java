@@ -137,4 +137,25 @@ public class BoardDAO {
 			}
 			return num;
 		}
+		
+		public static ArrayList<BoardDTO> getBoardsByMid(String mid) throws SQLException{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			ArrayList<BoardDTO> list = null;
+			try{
+				con = DBUtil.getConnection();
+				pstmt = con.prepareStatement("select b.bid, b.cid, b.member, b.title, b.content, b.category, b.hit, b.`date` from memberclub as mc, club as c, board as b where mc.mid=? and mc.cid = c.cid and c.cid = b.cid order by b.bid desc limit 5 ");
+				list = new ArrayList<BoardDTO>();
+				pstmt.setString(1, mid);
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()){
+					list.add(new BoardDTO(rset.getInt(1), rset.getInt(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), rset.getInt(7), rset.getString(8)));
+				}
+			}finally{
+				DBUtil.close(con, pstmt, rset);
+			}
+			return list;
+		}
 }

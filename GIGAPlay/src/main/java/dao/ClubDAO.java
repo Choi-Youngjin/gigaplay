@@ -17,7 +17,7 @@ public class ClubDAO {
 			PreparedStatement pstmt = null;
 			try{
 				con = DBUtil.getConnection();
-				pstmt = con.prepareStatement("insert into club(cid, cgroup, ctype, name, category, category2, price, point, intro, location) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+				pstmt = con.prepareStatement("insert into club(cid, cgroup, ctype, name, category, category2, price, point, intro, location, picture) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 				pstmt.setString(1, club.getCid());
 				pstmt.setString(2, club.getCgroup());
 				pstmt.setString(3, club.getCtype());
@@ -28,6 +28,7 @@ public class ClubDAO {
 				pstmt.setInt(8, club.getPoint());
 				pstmt.setString(9, club.getIntro());
 				pstmt.setString(10, club.getLocation());
+				pstmt.setString(11, club.getPicture());
 
     			int result = pstmt.executeUpdate();
 			

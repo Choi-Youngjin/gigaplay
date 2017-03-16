@@ -1,5 +1,7 @@
 package dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ClubDTO {
 
 	private String cid;
@@ -13,15 +15,9 @@ public class ClubDTO {
 	private String intro;
 	private String location;
 	private String picture;
+	private MultipartFile file;
 
 	public ClubDTO(){}
-	
-	public ClubDTO(String cid, String ctype, String name) {
-		super();
-		this.cid = cid;
-		this.ctype = ctype;
-		this.name = name;
-	}
 	
 	public ClubDTO(String cid, String cgroup, String ctype, String name, String category, String category2, int price,
 			int point, String intro, String location, String picture) {
@@ -125,6 +121,14 @@ public class ClubDTO {
 
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 
 }

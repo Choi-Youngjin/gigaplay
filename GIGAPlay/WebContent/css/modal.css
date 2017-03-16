@@ -23,7 +23,7 @@ html, body {
   position: fixed;
   top: 0; 
   left: 0;
-  background: rgba(41, 171, 164, 0.8);
+  background: rgba(95, 97, 96, 0.8); 
   visibility: hidden;
   opacity: 0;
   transition: all 0.25s ease-in-out;
@@ -106,7 +106,7 @@ html, body {
   height: 32px;
   padding: 5px 15px 12px 30px;
   overflow: hidden;
-  background: #e2525c;
+  background: red;
 }
 
 .btn-close {
@@ -130,5 +130,10 @@ html, body {
 }
 .good-job h1 {
   font-size: 45px;
+}
+
+input[type="file"]#fileup {
+	display:inline;
+	color:blue;
 }
 

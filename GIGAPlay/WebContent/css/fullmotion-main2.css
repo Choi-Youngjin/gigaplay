@@ -930,7 +930,7 @@
 		-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		background-color: #70c7be;
+		background-color: #ff0000; 
 		border-radius: 4px;
 		border: 0;
 		color: #ffffff !important;
@@ -943,6 +943,7 @@
 		text-align: center;
 		text-decoration: none;
 		white-space: nowrap;
+		font-family: olleh; 
 	}
 
 		input[type="submit"]:hover,
@@ -950,7 +951,7 @@
 		input[type="button"]:hover,
 		button:hover,
 		.button:hover {
-			background-color: #82cec6;
+			background-color: rgb(68,63,63);
 		}
 
 		input[type="submit"]:active,

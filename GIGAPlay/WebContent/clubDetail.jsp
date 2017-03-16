@@ -92,7 +92,7 @@ img {
 #clubIntro {
 	width: 100%;
 	min-height: 200px;
-	background-color: aquamarine;
+	background-color: aliceblue;
 	font-family: olleh;
 	color: black;
 	padding: 30px;

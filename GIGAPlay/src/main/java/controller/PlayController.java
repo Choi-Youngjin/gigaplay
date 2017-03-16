@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.BoardDAO;
@@ -98,29 +100,33 @@ public class PlayController {
 	public @ResponseBody String tempAdd(HttpServletRequest req, HttpServletResponse res, @RequestParam("category1") String category1, @RequestParam("mid") String mid, @RequestParam("cgroup") String cgroup, ClubDTO newTempClub) throws Exception{
 		JSONObject jsonObj = new JSONObject();
 		
-		if(newTempClub.getName().equals("")) {
+		if(newTempClub.getName() == null) {
 			jsonObj.put("err", "name_null");
 		}
 		else {
 			newTempClub.setCategory(category1);
 			newTempClub.setCgroup(cgroup);
 			newTempClub.setCtype("번개");
-			
 			switch(newTempClub.getCategory()){
 			case "sports":
 				newTempClub.setCategory("스포츠");
+				newTempClub.setPicture("default_sports.png");
 				break;
 			case "art":
 				newTempClub.setCategory("문화/예술");
+				newTempClub.setPicture("default_culture.png");
 				break;
 			case "food":
 				newTempClub.setCategory("요리/음식");
+				newTempClub.setPicture("default_cooking.png");
 				break;
 			case "volunteer":
 				newTempClub.setCategory("봉사/나눔");
+				newTempClub.setPicture("default_volunteer.png");
 				break;
 			default:
 				newTempClub.setCategory("게임/레저");
+				newTempClub.setPicture("default_leisure.png");
 				break;
 			}
 			
@@ -137,7 +143,6 @@ public class PlayController {
 		@RequestMapping(value="eduplay-add", method=RequestMethod.POST) 
 		public @ResponseBody String eduAdd(HttpServletRequest req, HttpServletResponse res, @RequestParam("category1") String category1, @RequestParam("mid") String mid, @RequestParam("cgroup") String cgroup, ClubDTO newTempClub) throws Exception{
 			JSONObject jsonObj = new JSONObject();
-			
 			if(newTempClub.getName().equals("")) {
 				jsonObj.put("err", "name_null");
 			}
@@ -149,18 +154,23 @@ public class PlayController {
 				switch(newTempClub.getCategory()){
 				case "sports":
 					newTempClub.setCategory("스포츠");
+					newTempClub.setPicture("default_sports.png");
 					break;
 				case "art":
 					newTempClub.setCategory("문화/예술");
+					newTempClub.setPicture("default_culture.png");
 					break;
 				case "food":
 					newTempClub.setCategory("요리/음식");
+					newTempClub.setPicture("default_cooking.png");
 					break;
 				case "volunteer":
 					newTempClub.setCategory("봉사/나눔");
+					newTempClub.setPicture("default_volunteer.png");
 					break;
 				default:
 					newTempClub.setCategory("게임/레저");
+					newTempClub.setPicture("default_leisure.png");
 					break;
 				}
 				
@@ -324,21 +334,27 @@ public class PlayController {
 		return mv;
 	}
 	
-		// 가입신청 등록!!!!!
-		@SuppressWarnings("null")
-		@RequestMapping(value="applyClub", method=RequestMethod.POST) 
-		public @ResponseBody String applyClub(@RequestParam("amid") String amid, @RequestParam("cid") String cid) throws Exception{
-			JSONObject jsonObj = new JSONObject();
+	// 가입신청 등록!!!!!
+			@SuppressWarnings("null")
+			@RequestMapping(value="applyClub", method=RequestMethod.POST) 
+			public @ResponseBody String applyClub(@RequestParam("amid") String amid, @RequestParam("cid") String cid) throws Exception{
+				JSONObject jsonObj = new JSONObject();
+				boolean isDuplicate = ClubApplyDAO.isDuplicate(amid, cid);
+				System.out.println(isDuplicate);
+				if(isDuplicate) {
+					jsonObj.put("err", "duplicate");
+					return jsonObj.toString();
+				}
+				boolean result = ClubApplyDAO.addClubApply(amid, cid);
+				if(result) {
+					jsonObj.put("succ", "apply");
+				}
+				else {
+					jsonObj.put("err", "fail");
+				}
+				return jsonObj.toString();
+			}
 			
-			boolean result = ClubApplyDAO.addClubApply(amid, cid);
-			if(result) {
-				jsonObj.put("succ", "apply");
-			}
-			else {
-				jsonObj.put("err", "fail");
-			}
-			return jsonObj.toString();
-		}
 		
 		// 가입신청 허가!!!!!
 		@SuppressWarnings("null")

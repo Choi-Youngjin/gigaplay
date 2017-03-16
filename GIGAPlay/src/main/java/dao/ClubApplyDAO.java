@@ -11,9 +11,35 @@ import dto.MemberDTO;
 import util.DBUtil;
 
 public class ClubApplyDAO {
+	
+	public static boolean isDuplicate(String amid, String cid) throws SQLException{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select count(*) from applymember where amid = ? and cid = ?");
+			pstmt.setString(1, amid);
+			pstmt.setString(2, cid);
+			rset = pstmt.executeQuery();
+			if(rset.next()){
+				if(rset.getInt(1) != 0) {
+					return true;
+				} else
+					return false;
+			
+			} else {
+				return true;
+			}
+		}finally{
+			DBUtil.close(con, pstmt);
+		}
+	}
+	
 	public static boolean addClubApply(String amid, String cid) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		
 		try{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement("insert into applymember(amid, cid) values(?, ?)");
@@ -21,7 +47,7 @@ public class ClubApplyDAO {
 			pstmt.setString(2, cid);
 
 			int result = pstmt.executeUpdate();
-		
+
 			if(result == 1){
 				return true;
 			}

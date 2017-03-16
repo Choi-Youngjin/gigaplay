@@ -177,6 +177,9 @@ $("#applyClub").click(function() {
 	        	   var test = JSON.parse(data);
 	        	   if(test.succ == "apply") {
 	        		  alert("가입 신청 성공!");
+	        	   } 
+	        	   if(test.err == "duplicate") {
+	        		   alert("이미 가입 신청을 했습니다. 회장의 허락을 기다려주세요.");
 	        	   }
 	           },
 	           error : function(xhr, status, error) {
